@@ -11,7 +11,7 @@ An AI-driven WhatsApp chatbot built with **Django**, integrated with **Twilio** 
 - 🗃️ Stores full conversation history to database
 - 💬 Recognizes greetings, polite expressions, and off-topic requests
 - 📚 Customizable with company profile and business logic
-- 🛡️ Clean, modular Django-based architecture
+- 🛡️ Django-based architecture
 
 ---
 
