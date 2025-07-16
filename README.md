@@ -13,6 +13,8 @@ includes a **CMS pages** to manage AI-related data in real time. Key features:
 - 🏨 Manage Company Profile and service descriptions
 - 📓 Define prefix/suffix for AI prompt tuning
 - 🧠 Customize how the bot understands and responds
+- 🤖 Create, manage, and send blast WhatsApp Message Templates
+
 
 The CMS empowers non-developers (e.g., admins, marketing) to modify chatbot behavior **without editing the code**.
 
