@@ -27,7 +27,7 @@ def send_message(to_number, body_text):
         data = {
             'To': f'whatsapp:{to_number}',
             'From': f'whatsapp:{twilio_number}',
-            'Body': 'Terjadi kegagalan dalam memproses pesan. Errornya sebagai berikut, ' + str(e)
+            'Body': 'There was a failure in processing the message. The error is as follows, ' + str(e)
         }
         response = requests.post(url, data=data, auth=HTTPBasicAuth(account_sid, auth_token))
         logger.error("Error sending message to " + to_number + ": " + str(e))
