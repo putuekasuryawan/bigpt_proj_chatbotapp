@@ -1,0 +1,205 @@
+<div class="modal fade" tabindex="-1" data-backdrop="static" id="modalLarge3">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Generate Template Chat</h5>
+                <a href="#" id="modalclosetemplatewizard" class="close" data-dismiss="modal" aria-label="Close" title="batalkan proses dan kembali">
+                    <em class="icon ni ni-cross"></em>
+                </a>
+            </div>
+            <div class="modal-body">
+                <div class="preview-block">
+                    <div class="row gy-4">
+                        <div class="col">
+                            <div class="nk-block nk-block-lg">
+                                <div class="nk-block-head">
+                                    <div class="nk-block-head-content">
+                                        <h4 class="title nk-block-title">Wizard Form - Template Chat</h4>
+                                        <div class="nk-block-des">
+                                            <p>Ikuti setiap langkah berikut untuk pembuatan template chat.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card card-bordered">
+                                    <div class="card-inner">
+                                        <form action="#" class="nk-wizard nk-wizard-simple is-alter" id="wizard">
+                                            <div class="nk-wizard-head">
+                                                <h5>Step 1</h5>
+                                            </div>
+                                            <div class="nk-wizard-content">
+                                                <div class="row gy-3">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="fw-first-name">Template Name  </label><em class="icon ni ni-alert-circle" id="icon-container">
+                                                                <span class="tooltips">Nama template hanya boleh mengandung karakter alfanumerik kecil dan garis bawah. Spasi atau karakter lain tidak diperbolehkan.</span></em>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" id="fw-template-name" name="fw-template-name" oninput="validateInput()" required>
+                                                                <small id="error-message" style="color: red; display: none;">Nama template tidak valid. Hanya karakter alfanumerik kecil dan garis bawah yang diperbolehkan.</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row gy-3">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="fw-nationality">Template Language</label>
+                                                            <div class="form-control-wrap ">
+                                                                <div class="form-control-select">
+                                                                    <select class="form-control required" data-msg="Required" id="fw-nationality" name="fw-nationality" required>
+                                                                        <option value="id">Indonesian</option>
+                                                                        <option value="en">English</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="fw-content-type">Content Type</label>
+                                                            <div class="form-control-wrap ">
+                                                                <div class="form-control-select">
+                                                                    <select class="form-control required" data-msg="Required" id="fw-content-type" name="fw-content-type" required>
+                                                                        <option value="text">Text</option>
+                                                                        <option value="media">Media</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="nk-wizard-head">
+                                                <h5>Step 2</h5>
+                                            </div>
+                                            <div class="nk-wizard-content">
+                                                <div id="text-inputs" class="content-type-section">
+                                                    <div class="row gy-3">
+                                                        <div class="col">
+                                                            <div style="padding-bottom: 2px;">
+                                                                <label><strong>Content Type Text</strong> memungkinkan chat template menggunakan konten text saja tanpa gambar atau video, tentu kelebihannya adalah pesan yang ringkas, ringan, dan hemat.</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row gy-3">
+                                                        <div class="col-sm-8">
+                                                            <label class="form-label" for="body-textarea-text">Body</label>
+                                                        </div>
+                                                        <div class="col">
+                                                            <p id="hitungbodytext" style="width: 100%;"><i>karakter limit 0/1600</i></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row gy-3">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <div class="form-control-wrap">
+                                                                    <textarea class="form-control no-resize" data-msg="Required" id="body-textarea-text" placeholder="Silakan ketik disini body untuk chat template.." required></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row gy-3">
+                                                        <div class="col-sm-7">
+                                                            <p id="variable-count-body-text" style="visibility:hidden"></p>
+                                                        </div>
+                                                        <div class="col-sm-5">
+                                                            <a href="#" class="btn btn-outline-light" id="add-variable-body-text"><em class="icon ni ni-plus-sm"></em><span> Tambah variable ke body</span></a><em class="icon ni ni-help" id="icon-container2"><span class="tooltips2">Variable adalah sebuah konten dinamis yang bisa ditambahkan ke dalam body chat template</span></em>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="media-inputs" class="content-type-section" style="display: none;">
+                                                    <div class="row gy-3">
+                                                        <div class="col">
+                                                            <div style="padding-bottom: 5px;">
+                                                                <label><strong>Content Type Media</strong> memungkinkan chat template memadukan konten type text dan multimedia seperti gambar, video, dan audio. Tentu kelebihannya adalah pesan menjadi lebih kaya dan lebih menarik perhatian.</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row gy-3">
+                                                        <div class="col-sm-8">
+                                                            <label class="form-label" for="body-textarea-media">Body</label>
+                                                        </div>
+                                                        <div class="col">
+                                                            <p id="hitungbodymedia" style="width: 100%;"><i>karakter limit 0/1600</i></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row gy-3">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <div class="form-control-wrap">
+                                                                    <textarea class="form-control no-resize" data-msg="Required" id="body-textarea-media" placeholder="Silakan ketik disini body untuk chat template.." required></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row gy-3">
+                                                        <div class="col-sm-7">
+                                                            <p id="variable-count-body-media" style="visibility:hidden"></p>
+                                                        </div>
+                                                        <div class="col-sm-5">
+                                                            <a href="#" class="btn btn-outline-light" id="add-variable-body-media"><em class="icon ni ni-plus-sm"></em><span> Tambah variable ke body</span></a><em class="icon ni ni-help" id="icon-container2"><span class="tooltips2">Variable adalah sebuah konten dinamis yang bisa ditambahkan ke dalam body chat template</span></em>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row gy-3">
+                                                        <div class="col-sm-8">
+                                                            <label class="form-label" for="fw-first-name">Media URL  </label><em class="icon ni ni-alert-circle" id="icon-container">
+                                                                <span class="tooltips">Whatsapp membatasi konten pesan media, yaitu maximum size limit adalah 16 MB</span></em>
+                                                        </div>
+                                                        <div class="col">
+                                                            <p id="hitungbodymediaupload" style="width: 100%;"><i>karakter limit 0/1600</i></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row gy-3">
+                                                        <div class="col">
+                                                            <div class="form-group" id="fileup-media">
+                                                                <div class="form-control-wrap">
+                                                                    <div class="custom-file">
+                                                                        <input type="file" multiple class="custom-file-input" id="uploaded-media">
+                                                                        <label class="custom-file-label" id="uploaded-media-label" for="uploaded-media">Choose file</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="nk-wizard-head">
+                                                <h5>Step 3</h5>
+                                            </div>
+                                            <div class="nk-wizard-content">
+                                                <div id="text-inputs2" class="content-type-section">
+                                                    <div style="padding-bottom: 15px;">
+                                                        <label>Berikut adalah <strong>Body Recap</strong> dari input yang anda berikan di langkah sebelumnya. Silahkan diperiksa kembali sebelum melakukan submit (proses tidak dapat diulang kembali setelahnya). Sebagai catatan, proses approval sendiri membutuhkan waktu <strong>up to 48 jam</strong> sejak submit dilakukan. Seluruh proses approval dilakukan oleh pihak <strong>Meta</strong>.<em class="icon ni ni-help" id="icon-container3"><span class="tooltips3">Chat template memerlukan persetujuan dari Meta untuk memastikan konten berkualitas, mencegah spam, dan mematuhi kebijakan WhatsApp Business, terutama saat mengirim pesan di luar sesi 24 jam. Meta Platforms, Inc. adalah perusahaan teknologi multinasional yang berfokus pada media sosial, kecerdasan buatan, dan pengembangan metaverse melalui platform seperti Facebook, Instagram, WhatsApp, dan perangkat VR Meta Quest.</span></em></label>
+                                                    </div>
+                                                    <div class="code-block" id="code-block-template-text">
+                                                        <h6 class="overline-title title">Chat template body recap</h6>
+                                                        <button class="btn btn-sm clipboard-init" title="Copy to clipboard" data-clipboard-target="#formElements" data-clip-success="Copied" data-clip-text="Copy"><span class="clipboard-text">Copy</span></button>
+                                                        <pre class="prettyprint lang-html" id="formElementswizardtext">
+                                                        </pre>
+                                                    </div>
+                                                </div>
+                                                <div id="media-inputs2" class="content-type-section" style="display: none;">
+                                                    <div style="padding-bottom: 15px;">
+                                                        <label>Berikut adalah <strong>Body Recap</strong> dari input yang anda berikan di langkah sebelumnya. Silahkan diperiksa kembali sebelum melakukan submit (proses tidak dapat diulang kembali setelahnya). Sebagai catatan, proses approval sendiri membutuhkan waktu <strong>up to 48 jam</strong> sejak submit dilakukan. Seluruh proses approval dilakukan oleh pihak <strong>Meta</strong>.<em class="icon ni ni-help" id="icon-container3"><span class="tooltips3">Chat template memerlukan persetujuan dari Meta untuk memastikan konten berkualitas, mencegah spam, dan mematuhi kebijakan WhatsApp Business, terutama saat mengirim pesan di luar sesi 24 jam. Meta Platforms, Inc. adalah perusahaan teknologi multinasional yang berfokus pada media sosial, kecerdasan buatan, dan pengembangan metaverse melalui platform seperti Facebook, Instagram, WhatsApp, dan perangkat VR Meta Quest.</span></em></label>
+                                                    </div>
+                                                    <div class="code-block" id="code-block-template-media">
+                                                        <h6 class="overline-title title">Chat template body recap</h6>
+                                                        <button class="btn btn-sm clipboard-init" title="Copy to clipboard" data-clipboard-target="#formElements" data-clip-success="Copied" data-clip-text="Copy"><span class="clipboard-text">Copy</span></button>
+                                                        <pre class="prettyprint lang-html" id="formElementswizardmedia">
+                                                        </pre>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer bg-light">
+                <span class="sub-text">Bianco Costel Chatbot Management By Banda AI</span>
+            </div>
+        </div>
+    </div>
+</div>

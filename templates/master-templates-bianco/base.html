@@ -1,0 +1,1945 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Banda AI">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <link rel="shortcut icon" href="{% static 'images/favicon-bianco.png' %}">
+    <title>Bianco Costel Chatbot Management</title>
+    <link rel="stylesheet" href="{% static 'assets/css/dashlite.css' %}">
+    <link id="skin-default" rel="{% static 'assets/css/theme.css' %}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
+</head>
+<style>
+    #icon-container {
+        position: relative;
+        display: inline-block;
+        font-size: 18px;
+        cursor: pointer;
+    }    
+    .tooltips {
+        visibility: hidden;
+        background-color: #333;
+        color: #fff;
+        text-align: left;
+        border-radius: 5px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        left: 50%;
+        bottom: 125%;
+        transform: translateX(-20%);
+        width: max-content;
+        max-width: 780px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        font-size: 13px; /* Mengubah font size menjadi 12px */
+        line-height: 1.5;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }    
+    #icon-container:hover .tooltips {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(-20%) translateY(-5px); /* Sedikit angkat tooltip ketika hover */
+    }
+    #icon-container2 {
+        top: 2px;
+        left: 5px;
+        position: relative;
+        display: inline-block;
+        font-size: 21px;
+        cursor: pointer;
+    } 
+    .tooltips2 {
+        visibility: hidden;
+        background-color: #333;
+        color: #fff;
+        text-align: left;
+        border-radius: 5px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        left: 50%;
+        bottom: 125%;
+        transform: translateX(-50%);
+        width: max-content;
+        max-width: 780px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        font-size: 13px;
+        line-height: 1.5;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }    
+    #icon-container2:hover .tooltips2 {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(-50%) translateY(-5px); /* Sedikit angkat tooltip ketika hover */
+    }
+    #icon-container3 {
+        top: 1px;
+        left: 3px;
+        position: relative;
+        display: inline-block;
+        font-size: 17px;
+        cursor: pointer;
+    } 
+    .tooltips3 {
+        visibility: hidden;
+        background-color: #333;
+        color: #fff;
+        text-align: left;
+        border-radius: 5px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        left: 50%;
+        bottom: 125%;
+        transform: translateX(-50%);
+        width: 780px;
+        max-width: 780px;
+        white-space: normal;
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        font-size: 13px;
+        line-height: 1.5;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }    
+    #icon-container3:hover .tooltips3 {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(-50%) translateY(-5px); /* Sedikit angkat tooltip ketika hover */
+    }
+    .custom-btn {
+        max-width: 100%;
+    }
+    label {
+        display:inline;
+    }
+    .preview-hr {
+        margin-bottom: 0rem;
+    }
+    hr {
+        margin-bottom: 0rem;
+    }
+    #card-bg {
+        background-image: url("{% static 'images/card-bg-chatbot-bianco.jpg' %}");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    #card-bgs {
+        background-image: url("{% static 'images/card-home-chatbot4.jpg' %}");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    #card-bgss {
+        background-image: url("{% static 'images/card-temp-chatbot.jpg' %}");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    #innerfrm {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+</style>
+<body class="nk-body bg-lighter npc-general has-sidebar ">
+    <div class="nk-app-root">
+        <div class="nk-main ">
+            {% block sidebar %}
+                {% include 'master-templates-bianco/sidebar.html' %}
+            {% endblock sidebar %}
+            <div class="nk-wrap ">
+                {% block header %}
+                    {% include 'master-templates-bianco/main-header.html' %}
+                {% endblock header %}
+                {% block content %}{% endblock content %}
+                {% block footer %}
+                    {% include 'master-templates-bianco/main-footer.html' %}
+                {% endblock footer %}
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'assets/js/bundle.js' %}"></script>
+    <script src="{% static 'assets/js/scripts.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    {% verbatim  %}
+    <script>       
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+        let test = {};
+        function validateInput() {
+            const input = document.getElementById('fw-template-name');
+            const errorMessage = document.getElementById('error-message');
+            
+            if (!input.value.match(/^[a-z0-9_]+$/)) {
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+            }
+        }
+        function formatReadableDate(isoString) {
+            const date = new Date(isoString);
+            const options = {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            };
+            return date.toLocaleString('id-ID', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            });
+        } 
+        function fetchTemplateStatus() {
+            Swal.fire({
+                title: "Loading...",
+                html: "Please wait a moment"
+            });
+            Swal.showLoading();    
+            $.ajax({
+                url: "/chatbot/bianco/template/get/status/",
+                type: "GET",
+                success: function(response) {
+                    Swal.close();
+                    let table = $('#submittedtemplatestatus').DataTable();
+                    table.clear();    
+                    response.data.forEach(function(template) {
+                        let statusColor = "";
+                        if (template.submit_status === "approved") {
+                            statusColor = "green";
+                        } else if (template.submit_status === "rejected") {
+                            statusColor = "red";
+                        } else if (template.submit_status === "pending") {
+                            statusColor = "orange";
+                        } else if (template.submit_status === "received") {
+                            statusColor = "darkorange";
+                        }   
+                        table.row.add([
+                            template.friendly_name,
+                            template.type,
+                            `<span style="color:${statusColor};">${template.submit_status}</span>`,
+                            template.content_sid,
+                            `<span data-order="${template.created}">${formatReadableDate(template.created)}</span>`,
+                            `<button class="btn btn-sm btn-danger delete-template" data-sid="${template.content_sid}">
+                                <em class="icon ni ni-trash"></em>
+                            </button>`
+                        ]);
+                    });   
+                    table.draw();
+                },
+                error: function(xhr, status, error) {
+                    console.error("Gagal ambil data:", error);
+                }
+            });
+        }
+        function fetchApprovedTemplates() {
+            Swal.fire({
+                title: "Loading...",
+                html: "Please wait a moment"
+            });
+            Swal.showLoading();    
+            $.ajax({
+                url: "/chatbot/bianco/template/get/approved/",
+                type: "GET",
+                success: function(response) {
+                    Swal.close();
+                    const select = $('#outlined-select-template');
+                    select.empty();
+                    select.append(`<option value="">Pilih satu...</option>`);
+    
+                    response.data.forEach(item => {
+                        const option = `<option value="${item.content_sid}">${item.friendly_name}</option>`;
+                        select.append(option);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error("Gagal ambil data:", error);
+                }
+            });
+        }
+        function renderWhatsappPreview({ body = '', media_url = ''}) {
+            let messageBubble = '';
+            if (body) {
+                messageBubble = `
+                    <div style="
+                        background: #f0f1f3;
+                        padding: 10px 14px;
+                        border-radius: 12px;
+                        font-size: 14px;
+                        line-height: 1.5;
+                        text-align: left;
+                        word-break: break-word;
+                        margin-bottom: 10px;
+                    ">
+                        ${body.replace(/\n/g, '<br>')}
+                    </div>
+                `;
+            }
+        
+            let mediaContent = '';
+            if (media_url) {
+                if (media_url.match(/\.(jpeg|jpg|png|gif)$/i)) {
+                    mediaContent = `
+                        <div style="background: white; border-radius: 12px; overflow: hidden;">
+                            <img src="${media_url}" style="width: 100%; height: auto; display: block;" />
+                        </div>
+                    `;
+                } else if (media_url.match(/\.(mp4|webm)$/i)) {
+                    mediaContent = `
+                        <div style="background: white; border-radius: 12px; overflow: hidden;">
+                            <video controls style="width: 100%; height: auto; display: block;">
+                                <source src="${media_url}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    `;
+                } else if (media_url.match(/\.(mp3|wav)$/i)) {
+                    mediaContent = `
+                        <div style="background: white; border-radius: 12px; overflow: hidden; padding: 8px;">
+                            <audio controls style="width: 100%;">
+                                <source src="${media_url}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    `;
+                }
+            }
+        
+            return `
+                <div style="max-width: 400px; margin: 0 auto;">
+                    <div style="border: 8px solid #2e3a59; border-radius: 40px; background-color: white; box-shadow: 0 5px 10px rgba(0,0,0,0.1); overflow: hidden; height: 600px; display: flex; flex-direction: column;">
+                        <div style="background: #f1f2f6; padding: 10px; text-align: center; flex-shrink: 0;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="24" style="margin-bottom: 5px;" />
+                            <div style="font-weight: bold; font-size: 13px;">Your phone number</div>
+                        </div>
+        
+                        <div style="flex: 1; overflow-y: auto; padding: 12px;">
+                            ${messageBubble}
+                            ${mediaContent}
+                        </div>
+                    </div>
+                </div>
+            `;
+        } 
+        function formatRecipientsManual(data) {
+            let result = "[\n";
+            data.forEach((item, index) => {
+                result += "    {\n";
+                // Selalu tampilkan number dulu
+                result += `        "number": "${item.number}"`;
+                
+                const otherKeys = Object.keys(item).filter(k => k !== "number");
+                otherKeys.sort((a, b) => parseInt(a) - parseInt(b)); // sort var1, var2, ...
+                otherKeys.forEach((key) => {
+                    result += `,\n        "${key}": "${item[key]}"`;
+                });
+        
+                result += "\n    }";
+                if (index < data.length - 1) {
+                    result += ",";
+                }
+                result += "\n";
+            });
+            result += "]";
+            return result;
+        }
+        $(document).ready( function() {
+            // semua konten media disini
+                document.getElementById("uploaded-media").addEventListener("change", function (event) {
+                    const maxFileSize = 16 * 1024 * 1024;
+                    const files = event.target.files;
+                    let isValid = true;            
+                    for (let i = 0; i < files.length; i++) {
+                        if (files[i].size > maxFileSize) {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: `File "${files[i].name}" melebihi ukuran maksimum 16MB.`,
+                                showConfirmButton: false,
+                                timer: 5000
+                            });
+                            isValid = false;
+                            break;
+                        }
+                    }            
+                    if (!isValid) {
+                        event.target.value = "";
+                        document.getElementById("uploaded-media-label").textContent = "Choose file";
+                    } else {
+                        const fileNames = Array.from(files).map(file => file.name).join(", ");
+                        document.getElementById("uploaded-media-label").textContent = fileNames;
+                    }
+                });
+                var fileinputmedia = document.getElementById("uploaded-media");
+                var fileinputmedialabel = document.getElementById("uploaded-media-label");
+                const counters = document.getElementById("hitungbodymediaupload");
+                const maxCharss = 1600; 
+                counters.innerHTML = `<i>karakter limit 0/${maxCharss}</i>`; 
+                if (fileinputmedia) {
+                    fileinputmedia.addEventListener('change', function() {
+                        if (this.files && this.files.length > 0) {
+                            Swal.fire({
+                                title: "Loading...",
+                                html: "Please wait a moment"
+                            })
+                            Swal.showLoading()
+                            var formData = new FormData();
+                            formData.append('file', this.files[0]);
+                            formData.append('csrfmiddlewaretoken', getCookie('csrftoken'));
+                            $('#fileup-media *').attr("disabled", true);
+                            var xhr = new XMLHttpRequest();
+                            xhr.open('POST', '/chatbot/bianco/file/upload/', true);
+                            xhr.onreadystatechange = function() {
+                                Swal.fire({
+                                    title: "Loading...",
+                                    html: "Please wait a moment"
+                                })
+                                Swal.showLoading()
+                                if (xhr.readyState == 4) {
+                                    if (xhr.status == 200) {
+                                        var response = JSON.parse(xhr.responseText);
+                                        if (response.result == "success") {
+                                            Swal.fire({
+                                                toast: true,
+                                                icon: 'success',
+                                                title: response.message,
+                                                animation: true,
+                                                position: 'top-right',
+                                                showConfirmButton: false,
+                                                timer: 3000,
+                                                timerProgressBar: true,
+                                                color: 'white',
+                                                background: '#7a68f9',
+                                                didOpen: (toast) => {
+                                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                                }
+                                            }).then((result) => {
+                                                fileinputmedialabel.textContent = response.fullpath
+                                                let currentLengths = fileinputmedialabel.textContent.length
+                                                if (currentLengths > maxCharss) {
+                                                    fileinputmedialabel.textContent = fileinputmedialabel.textContent.substring(0, maxCharss);
+                                                    currentLengths = maxCharss;
+                                                } 
+                                                counters.innerHTML = `<i>karakter limit ${currentLengths}/${maxCharss}</i>`;
+                                            }); 
+                                        } else {
+                                            Swal.close()
+                                            Swal.fire({
+                                                toast: true,
+                                                icon: 'error',
+                                                title: `error found: ${response.message}`,
+                                                animation: true,
+                                                position: 'top-right',
+                                                showConfirmButton: false,
+                                                timer: 3000,
+                                                timerProgressBar: true,
+                                                color: 'white',
+                                                background: '#7a68f9',
+                                                didOpen: (toast) => {
+                                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                                }
+                                            }).then((result) => {
+                                                console.log("Error:", response.message);
+                                            });
+                                        }
+                                    } else {
+                                        Swal.close()
+                                        Swal.fire({
+                                            toast: true,
+                                            icon: 'error',
+                                            title: `error found: ${xhr.status}`,
+                                            animation: true,
+                                            position: 'top-right',
+                                            showConfirmButton: false,
+                                            timer: 3000,
+                                            timerProgressBar: true,
+                                            color: 'white',
+                                            background: '#7a68f9',
+                                            didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                            }
+                                        }).then((result) => {
+                                            console.log("Error:", xhr.status);
+                                        });
+                                    }
+                                }
+                            };
+                            xhr.send(formData);
+                        }
+                    })
+                }
+
+                const textarea1 = document.getElementById("body-textarea-media");
+                const counter1 = document.getElementById("hitungbodymedia");        
+                const maxChars = 1600;         
+                counter1.innerHTML = `<i>karakter limit 0/${maxChars}</i>`;       
+                textarea1.addEventListener("input", function () {
+                    let currentLength1 = textarea1.value.length;        
+                    if (currentLength1 > maxChars) {
+                        textarea1.value = textarea1.value.substring(0, maxChars);
+                        currentLength1 = maxChars;
+                    }       
+                    counter1.innerHTML = `<i>karakter limit ${currentLength1}/${maxChars}</i>`;
+                });
+
+                function getSortedNumbersMedia() {
+                    let textarea2 = document.getElementById("body-textarea-media").value;
+                    let matches2 = textarea2.match(/\{\{(\d+)\}\}/g);    
+                    if (matches2) {
+                        let numbers2 = matches2.map(m => parseInt(m.replace(/\{\{|\}\}/g, ''), 10));
+                        numbers2.sort((a, b) => a - b);
+                        return numbers2;
+                    }
+                    return [];
+                }    
+                function findMissingNumberMedia(numbers2) {
+                    let i = 1;
+                    while (numbers2.includes(i)) {
+                        i++;
+                    }
+                    return i;
+                }    
+                function reorderVariablesMedia() {
+                    let textarea3 = document.getElementById("body-textarea-media");
+                    let text3 = textarea3.value;
+                    let cursorPos3 = textarea3.selectionStart;    
+                    let numbers3 = getSortedNumbersMedia();
+                    let index3 = 1;
+                    let newText3 = text3.replace(/\{\{\d+\}\}/g, () => `{{${index3++}}}`);    
+                    textarea3.value = newText3;
+                    textarea3.selectionStart = textarea3.selectionEnd = cursorPos3;
+                }    
+                function addVariableMedia() {
+                    let textarea4 = document.getElementById("body-textarea-media");
+                    let cursorPos4 = textarea4.selectionStart;
+                    let textBefore4 = textarea4.value.substring(0, cursorPos4);
+                    let textAfter4 = textarea4.value.substring(cursorPos4);    
+                    let numbers4 = getSortedNumbersMedia();
+                    let newNumber4 = findMissingNumberMedia(numbers4);  
+                    let newVariable = `{{${newNumber4}}}`;
+                    if (textarea4.value.length + newVariable.length > 1600) {
+                        return;
+                    }  
+                    textarea4.value = textBefore4 + `{{${newNumber4}}}` + textAfter4;
+                    textarea4.selectionStart = textarea4.selectionEnd = cursorPos4 + 6;    
+                    reorderVariablesMedia();
+                    updateCharacterCountMedia();
+                }    
+                document.getElementById("add-variable-body-media").addEventListener("click", function () {
+                    addVariableMedia();
+                    updateCharacterCountMedia();
+                });    
+                document.getElementById("body-textarea-media").addEventListener("input", function () {
+                    let cursorPos5 = this.selectionStart;
+                    reorderVariablesMedia();
+                    this.selectionStart = this.selectionEnd = cursorPos5;
+                });
+                document.getElementById("body-textarea-media").addEventListener("input", updateVariableCountMedia);
+                document.getElementById("add-variable-body-media").addEventListener("click", updateVariableCountMedia);
+                function updateVariableCountMedia() {
+                    let numbers6 = getSortedNumbersMedia();
+                    document.getElementById("variable-count-body-media").innerText = `${numbers6.length}`;
+                }
+                function updateCharacterCountMedia() {
+                    let textarea7 = document.getElementById("body-textarea-media");
+                    let counter7 = document.getElementById("hitungbodymedia");
+                    let currentLength7 = textarea7.value.length;
+                    const maxChars7 = 1600;
+                    counter7.innerHTML = `<i>karakter limit ${currentLength7}/${maxChars7}</i>`;
+                }
+
+            // ---- end of konten media
+            // semua konten text disini
+                const textarea8 = document.getElementById("body-textarea-text");
+                const counter8 = document.getElementById("hitungbodytext");        
+                const maxChars8 = 1600;         
+                counter8.innerHTML = `<i>karakter limit 0/${maxChars8}</i>`;       
+                textarea8.addEventListener("input", function () {
+                    let currentLength8 = textarea8.value.length;        
+                    if (currentLength8 > maxChars8) {
+                        textarea8.value = textarea8.value.substring(0, maxChars8);
+                        currentLength8 = maxChars8;
+                    }       
+                    counter8.innerHTML = `<i>karakter limit ${currentLength8}/${maxChars8}</i>`;
+                });
+
+                function getSortedNumbersText() {
+                    let textarea9 = document.getElementById("body-textarea-text").value;
+                    let matches9 = textarea9.match(/\{\{(\d+)\}\}/g);    
+                    if (matches9) {
+                        let numbers9 = matches9.map(m => parseInt(m.replace(/\{\{|\}\}/g, ''), 10));
+                        numbers9.sort((a, b) => a - b);
+                        return numbers9;
+                    }
+                    return [];
+                }    
+                function findMissingNumberText(numbers9) {
+                    let i = 1;
+                    while (numbers9.includes(i)) {
+                        i++;
+                    }
+                    return i;
+                }    
+                function reorderVariablesText() {
+                    let textarea10 = document.getElementById("body-textarea-text");
+                    let text10 = textarea10.value;
+                    let cursorPos10 = textarea10.selectionStart;    
+                    let numbers10 = getSortedNumbersText();
+                    let index10 = 1;
+                    let newText10 = text10.replace(/\{\{\d+\}\}/g, () => `{{${index10++}}}`);    
+                    textarea10.value = newText10;
+                    textarea10.selectionStart = textarea10.selectionEnd = cursorPos10;
+                }    
+                function addVariableText() {
+                    let textarea11 = document.getElementById("body-textarea-text");
+                    let cursorPos11 = textarea11.selectionStart;
+                    let textBefore11 = textarea11.value.substring(0, cursorPos11);
+                    let textAfter11 = textarea11.value.substring(cursorPos11);    
+                    let numbers11 = getSortedNumbersText();
+                    let newNumber11 = findMissingNumberText(numbers11);  
+                    let newVariable11 = `{{${newNumber11}}}`;
+                    if (textarea11.value.length + newVariable11.length > 1600) {
+                        return;
+                    }  
+                    textarea11.value = textBefore11 + `{{${newNumber11}}}` + textAfter11;
+                    textarea11.selectionStart = textarea11.selectionEnd = cursorPos11 + 6;    
+                    reorderVariablesText();
+                    updateCharacterCountText();
+                }    
+                document.getElementById("add-variable-body-text").addEventListener("click", function () {
+                    addVariableText();
+                    updateCharacterCountText();
+                });    
+                document.getElementById("body-textarea-text").addEventListener("input", function () {
+                    let cursorPos12 = this.selectionStart;
+                    reorderVariablesText();
+                    this.selectionStart = this.selectionEnd = cursorPos12;
+                });
+                document.getElementById("body-textarea-text").addEventListener("input", updateVariableCountText);
+                document.getElementById("add-variable-body-text").addEventListener("click", updateVariableCountText);
+                function updateVariableCountText() {
+                    let numbers13 = getSortedNumbersText();
+                    document.getElementById("variable-count-body-text").innerText = `${numbers13.length}`;
+                }
+                function updateCharacterCountText() {
+                    let textarea14 = document.getElementById("body-textarea-text");
+                    let counter14 = document.getElementById("hitungbodytext");
+                    let currentLength14 = textarea14.value.length;
+                    const maxChars14 = 1600;
+                    counter14.innerHTML = `<i>karakter limit ${currentLength14}/${maxChars14}</i>`;
+                }
+                
+            // ---- end of konten text
+            // deklarasi lainnya
+                var submittedtemplatestatus = $('#submittedtemplatestatus').DataTable({           
+                    "initComplete": function (settings, json) {  
+                        $("#submittedtemplatestatus").wrap("<div style='overflow:auto; width:100%;position:relative;'></div>");            
+                    },
+                    "order": [[4, "desc"]],
+                    "columnDefs": [
+                        {
+                            "targets": [4],
+                            "visible": true,
+                            "searchable": true
+                        }
+                    ]
+                });
+                const textInputs = document.getElementById('text-inputs');
+                const mediaInputs = document.getElementById('media-inputs');
+                const textInputs2 = document.getElementById('text-inputs2');
+                const mediaInputs2 = document.getElementById('media-inputs2');
+                let currentVarsNumber = 0;
+                var profileawal = $('#instruksicp').val();
+                var suffixawal = $('#instruksisx').val();
+                $('#instruksifrm *').attr("disabled", true);
+                $('#instruksisxfrm *').attr("disabled", true);
+                $("#btnnewinstrcp").click(function(event){
+                    $('#instruksifrm *').attr("disabled", false);
+                });
+                $("#btnnewinstrsx").click(function(event){
+                    $('#instruksisxfrm *').attr("disabled", false);
+                });
+                $("#btndiscardinstrcp").click(function(event){
+                    $('#instruksicp').val(profileawal);
+                    $('#instruksifrm *').attr("disabled", true);
+                });
+                $("#btndiscardinstrsx").click(function(event){
+                    $('#instruksisx').val(suffixawal);
+                    $('#instruksisxfrm *').attr("disabled", true);
+                });
+                $("#modalclosegut").click(function() {
+                    window.location.reload();
+                });
+                $("#modalclosegut2").click(function() {
+                    window.location.reload();
+                });
+                $("#fw-content-type").change(function() {
+                    if ($("#fw-content-type").val() === 'text') {
+                        textInputs.style.display = 'block';
+                        mediaInputs.style.display = 'none';
+                        textInputs2.style.display = 'block';
+                        mediaInputs2.style.display = 'none';
+                    } else if ($("#fw-content-type").val() === 'media') {
+                        textInputs.style.display = 'none';
+                        mediaInputs.style.display = 'block';
+                        textInputs2.style.display = 'none';
+                        mediaInputs2.style.display = 'block';
+                    }
+                });
+                if ($("#fw-content-type").val() === 'text') {
+                    textInputs.style.display = 'block';
+                    mediaInputs.style.display = 'none';
+                    textInputs2.style.display = 'block';
+                    mediaInputs2.style.display = 'none';
+                } else if ($("#fw-content-type").val() === 'media') {
+                    textInputs.style.display = 'none';
+                    mediaInputs.style.display = 'block';
+                    textInputs2.style.display = 'none';
+                    mediaInputs2.style.display = 'block';
+                }
+                let autoRefreshEnabled = true;
+                let refreshInterval = null;
+                let targetElementTable = document.querySelector("#submittedtemplatestatus");
+                let targetElementModal9 = document.querySelector("#modalLarge9");
+                let targetElementText = document.querySelector("#code-block-template-text");
+                let targetElementMedia = document.querySelector("#code-block-template-media");
+                if (targetElementTable) {
+                    const observerTable = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                if (!refreshInterval) {
+                                    fetchTemplateStatus();
+                                    refreshInterval = setInterval(() => {
+                                        if (autoRefreshEnabled) {
+                                            fetchTemplateStatus();
+                                        }
+                                    }, 60000);
+                                }
+                            } else {
+                                if (refreshInterval) {
+                                    clearInterval(refreshInterval);
+                                    refreshInterval = null;
+                                }
+                            }
+                        });
+                    }, { threshold: 0.1 });            
+                    observerTable.observe(targetElementTable);
+                }
+                if (targetElementModal9) {
+                    const observerModal9 = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                fetchApprovedTemplates();
+                            }
+                        });
+                    }, { threshold: 0.1 });            
+                    observerModal9.observe(targetElementModal9);
+                }
+                if (targetElementText) {
+                    let observerText = new IntersectionObserver(function (entries) {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                let tname = document.getElementById("fw-template-name").value;
+                                let lang = document.getElementById("fw-nationality").value;
+                                let body = document.getElementById("body-textarea-text").value;
+                                let numbervar = document.getElementById("variable-count-body-text").innerText;
+
+                                let variables = {};
+                                for (let i = 1; i <= numbervar; i++) {
+                                    variables[`${i}`] = `sample_data${i}`;
+                                }                            
+                                let recapData = {
+                                    "friendly_name": tname,
+                                    "language": lang,
+                                    "variables": variables,
+                                    "types": {
+                                        "twilio/text": {
+                                            "body": body
+                                        }
+                                    }
+                                };
+                                document.getElementById("formElementswizardtext").textContent = JSON.stringify(recapData, null, 4);
+                            }
+                        });
+                    }, { threshold: 0.1 });     
+                    observerText.observe(targetElementText);
+                } 
+                if (targetElementMedia) {
+                    let observerMedia = new IntersectionObserver(function (entries) {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                let tname = document.getElementById("fw-template-name").value;
+                                let lang = document.getElementById("fw-nationality").value;
+                                let body = document.getElementById("body-textarea-media").value;
+                                let uploadedmedia = document.getElementById("uploaded-media-label").textContent;
+                                let numbervar = document.getElementById("variable-count-body-media").innerText;
+                                let variables = {};
+                                for (let i = 1; i <= numbervar; i++) {
+                                    variables[`${i}`] = `sample_data${i}`;
+                                }
+                                let recapData = {
+                                    "friendly_name": tname,
+                                    "language": lang,
+                                    "variables": variables,
+                                    "types": {
+                                        "twilio/media": {
+                                            "body": body,
+                                            "media": [uploadedmedia]
+                                        }
+                                    }
+                                };
+                                document.getElementById("formElementswizardmedia").textContent = JSON.stringify(recapData, null, 4);
+                            }
+                        });
+                    }, { threshold: 0.1 });
+                    observerMedia.observe(targetElementMedia);
+                }
+                document.addEventListener("click", function (event) {
+                    let target = event.target;
+                    if (target.tagName === "A" && target.getAttribute("href") === "#finish") {
+                        if ($("#fw-content-type").val() === 'text') {
+                            Swal.fire({
+                                title: "Anda yakin ingin melakukan submit ke Meta? Setelah anda memilih submit maka proses tidak dapat diulangi.",
+                                showDenyButton: false,
+                                showCancelButton: true,
+                                confirmButtonText: "Submit",
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    tname = document.getElementById("fw-template-name").value;
+                                    lang = document.getElementById("fw-nationality").value;
+                                    body = document.getElementById("body-textarea-text").value;  
+                                    numbervar = document.getElementById("variable-count-body-text").innerText
+                                    finalrecap = document.getElementById("formElementswizardtext").textContent
+                                    submit_type_text_to_meta(tname, lang, body, numbervar, finalrecap);
+                                } else {            
+                                }
+                            });
+                        } else if ($("#fw-content-type").val() === 'media') {
+                            Swal.fire({
+                                title: "Anda yakin ingin melakukan submit ke Meta? Setelah anda memilih submit maka proses tidak dapat diulangi.",
+                                showDenyButton: false,
+                                showCancelButton: true,
+                                confirmButtonText: "Submit",
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    tname = document.getElementById("fw-template-name").value;
+                                    lang = document.getElementById("fw-nationality").value;
+                                    body = document.getElementById("body-textarea-media").value;  
+                                    numbervar = document.getElementById("variable-count-body-media").innerText
+                                    mediaurl = document.getElementById("uploaded-media-label").textContent;
+                                    finalrecap = document.getElementById("formElementswizardmedia").textContent
+                                    submit_type_media_to_meta(tname, lang, body, numbervar, mediaurl, finalrecap);
+                                } else {            
+                                }
+                            });
+                        }
+                    }
+                });
+                $(document).on("change", "#customSwitch6", function () {
+                    autoRefreshEnabled = $(this).is(":checked");
+                });
+                $('#submittedtemplatestatus tbody').on('click', '.delete-template', function() {
+                    let sid = $(this).data('sid');
+                    Swal.fire({
+                        title: 'Anda yakin ingin menghapus template?',
+                        text: "Action ini akan menghapus template secara permanen!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Hapus'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: "Loading...",
+                                html: "Please wait a moment"
+                            });
+                            Swal.showLoading();
+                            $.ajax({
+                                url: `/chatbot/bianco/template/delete/${sid}/`,
+                                type: 'POST',
+                                headers: {
+                                    'X-CSRFToken': getCookie('csrftoken')
+                                },
+                                success: function(response) {
+                                    Swal.close();
+                                    Swal.fire({
+                                        title: 'Terhapus!',
+                                        text: 'Template berhasil dihapus.',
+                                        icon: 'success',
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        showConfirmButton: false
+                                    }).then(() => {
+                                        fetchTemplateStatus();
+                                    });
+                                },
+                                error: function() {
+                                    Swal.fire('Error!', 'Gagal hapus template.', 'error');
+                                }
+                            });
+                        }
+                    });
+                });
+                $('#submittedtemplatestatus tbody').on('dblclick', 'tr', function () {
+                    var sid = $(this).find('.delete-template').data('sid');
+                    if (sid) {
+                        Swal.fire({
+                            title: "Loading...",
+                            html: "Please wait a moment"
+                        });
+                        Swal.showLoading();
+                        $.ajax({
+                            url: `/chatbot/bianco/template/get/content/${sid}/`,
+                            type: "GET",
+                            success: function(response) {
+                                Swal.close();   
+                                response.data.forEach(function(template) {
+                                    types = template.type
+                                    bodys = template.body
+                                    medias = template.media
+                                    if (types == "text") {
+                                        const previewHtml = renderWhatsappPreview({
+                                            body: bodys, 
+                                            media_url: ""
+                                        });
+                                        Swal.fire({ html: previewHtml, showCloseButton: true, showConfirmButton: false, width: 450 });
+                                    } else if (types == "media") {
+                                        const previewHtml = renderWhatsappPreview({
+                                            body: bodys, 
+                                            media_url: medias
+                                        });
+                                        Swal.fire({ html: previewHtml, showCloseButton: true, showConfirmButton: false, width: 450 });                                        
+                                    }
+                                });   
+                            },
+                            error: function(xhr, status, error) {
+                                console.error("Gagal ambil data:", error);
+                            }
+                        });
+                    }
+                });
+                $(document).on("change", "#outlined-select-template", function () {
+                    const preview = document.getElementById('whatsapp-preview');
+                    const selectedSid = $(this).val();               
+                    if (!selectedSid) {
+                        $('#whatsapp-preview').html("");
+                        return;
+                    }  
+                    Swal.fire({
+                        title: "Loading...",
+                        html: "Please wait a moment"
+                    });
+                    Swal.showLoading();             
+                    $.ajax({
+                        url: `/chatbot/bianco/template/get/approved/detail/${selectedSid}/`,
+                        type: "GET",
+                        success: function (response) {
+                            Swal.close();   
+                            response.data.forEach(function(template) {
+                                types = template.type
+                                bodys = template.body
+                                media_url = template.media
+                                currentVarsNumber = template.varsnumber;
+
+                                if (types == "text") {
+                                    preview.innerHTML = `
+                                        <div style="background: #f0f1f3; padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.5; text-align: left; word-break: break-word; margin-bottom: 10px;">
+                                            ${bodys.replace(/\n/g, '<br>')}
+                                        </div>`;
+
+                                } else if (types == "media") {
+                                    if (media_url.match(/\.(jpeg|jpg|png|gif)$/i)) {
+                                        preview.innerHTML = `
+                                            <div style="background: #f0f1f3; padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.5; text-align: left; word-break: break-word; margin-bottom: 10px;">
+                                                ${bodys.replace(/\n/g, '<br>')}
+                                            </div>
+                                            <div style="background: white; border-radius: 12px; overflow: hidden;">
+                                                <img src="${media_url}" style="width: 100%; height: auto; display: block;" />
+                                            </div>`;
+                                    } else if (media_url.match(/\.(mp4|webm)$/i)) {
+                                        preview.innerHTML = `
+                                            <div style="background: #f0f1f3; padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.5; text-align: left; word-break: break-word; margin-bottom: 10px;">
+                                                ${bodys.replace(/\n/g, '<br>')}
+                                            </div>
+                                            <div style="background: white; border-radius: 12px; overflow: hidden;">
+                                                <video controls style="width: 100%; height: auto; display: block;">
+                                                    <source src="${media_url}" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                            </div>`;
+                                    } else if (media_url.match(/\.(mp3|wav)$/i)) {
+                                        preview.innerHTML = `
+                                            <div style="background: #f0f1f3; padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.5; text-align: left; word-break: break-word; margin-bottom: 10px;">
+                                                ${bodys.replace(/\n/g, '<br>')}
+                                            </div>
+                                            <div style="background: white; border-radius: 12px; overflow: hidden; padding: 8px;">
+                                                <audio controls style="width: 100%;">
+                                                    <source src="${media_url}" type="audio/mpeg">
+                                                    Your browser does not support the audio element.
+                                                </audio>
+                                            </div>`;
+                                    }                                   
+                                }
+                            });   
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Gagal ambil detail template:", error);
+                        }
+                    });
+                });
+                $(document).on("click", "#download-template-btn", function () {
+                    const headers = ['phone_number'];
+                    if (currentVarsNumber > 0) {
+                        for (let i = 1; i <= currentVarsNumber; i++) {
+                            headers.push(`var${i}`);
+                        }
+                    }
+                    const data = [headers];                    
+                    const ws = XLSX.utils.aoa_to_sheet(data);
+                    const wb = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(wb, ws, "Data");
+                    XLSX.writeFile(wb, 'data_kontak_dan_variable.xlsx');
+                });
+                $(document).on("click", "#upload-template-btn", function () {
+                    Swal.fire({
+                        title: 'Unggah File',
+                        text: "Anda yakin ingin mengunggah file ini?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Unggah'
+                    }).then((result) => {
+                        document.getElementById('file-input-upload').click();
+                    });
+                });
+                $(document).on("change", "#file-input-upload", function () {
+                    if (this.files && this.files.length > 0) {
+                        var formData = new FormData();
+                        formData.append('file', this.files[0]);
+                        formData.append('csrfmiddlewaretoken', getCookie('csrftoken'));
+                        var xhr = new XMLHttpRequest();
+                        Swal.fire({
+                            title: "Loading...",
+                            html: "Please wait a moment"
+                        });
+                        Swal.showLoading();
+                        xhr.open('POST', '/chatbot/bianco/file/upload/', true);
+                        xhr.onreadystatechange = function() {
+                            Swal.fire({
+                                title: "Loading...",
+                                html: "Please wait a moment"
+                            })
+                            Swal.showLoading()
+                            if (xhr.readyState == 4) {
+                                if (xhr.status == 200) {
+                                    var response = JSON.parse(xhr.responseText);
+                                    if (response.result == "success") {
+                                        Swal.close
+                                        Swal.fire({
+                                            toast: true,
+                                            icon: 'success',
+                                            title: response.message,
+                                            animation: true,
+                                            position: 'top-right',
+                                            showConfirmButton: false,
+                                            timer: 3000,
+                                            timerProgressBar: true,
+                                            color: 'white',
+                                            background: '#7a68f9',
+                                            didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                            }
+                                        }).then((result) => {
+                                            konversi_format_upload_template(response.fullpath)
+                                        }); 
+                                    } else {
+                                        Swal.close()
+                                        Swal.fire({
+                                            toast: true,
+                                            icon: 'error',
+                                            title: `error found: ${response.message}`,
+                                            animation: true,
+                                            position: 'top-right',
+                                            showConfirmButton: false,
+                                            timer: 3000,
+                                            timerProgressBar: true,
+                                            color: 'white',
+                                            background: '#7a68f9',
+                                            didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                            }
+                                        }).then((result) => {
+                                            console.log("Error:", response.message);
+                                        });
+                                    }
+                                } else {
+                                    Swal.close()
+                                    Swal.fire({
+                                        toast: true,
+                                        icon: 'error',
+                                        title: `error found: ${xhr.status}`,
+                                        animation: true,
+                                        position: 'top-right',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        color: 'white',
+                                        background: '#7a68f9',
+                                        didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    }).then((result) => {
+                                        console.log("Error:", xhr.status);
+                                    });
+                                }
+                            }
+                        };
+                        xhr.send(formData);
+                    }
+                });
+                $(document).on("click", "#kirim-template-blast-btn", function () {
+                    try {
+                        const sid = $('#outlined-select-template').val();
+                        const rawText = $('#code-blok-template').text().trim();
+                        console.log("SID:", sid);
+                        console.log("Raw text:", rawText);
+                
+                        const recipients = JSON.parse(rawText);
+                        console.log("Siap dikirim:", recipients);
+                
+                        kirim_template_blast(sid, recipients);
+                    } catch (e) {
+                        console.error("Parsing Error:", e);
+                        Swal.fire("Error", "Isi file tidak valid atau bukan format JSON yang benar.", "error");
+                    }
+                });
+            // ---- end of deklarasi lainnya
+        })
+        $("#modalclosetemplatewizard").click(function() {
+            localStorage.setItem("showModalAfterReload", "modalLarge7");
+            window.location.reload();
+        });
+        $("#modalmonitorstatus").click(function() {
+            localStorage.setItem("showModalAfterReload", "modalLarge7");
+            window.location.reload();
+        });
+        $("#btnsaveinstrcp").click(function(){
+            Swal.fire({
+                title: "Anda yakin ingin menyimpan profile ini?",
+                showDenyButton: false,
+                showCancelButton: true,
+                confirmButtonText: "Simpan",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    instruksicp = $("#instruksicp").val();
+                    instruksicpsaved(instruksicp)
+                } else {            
+                }
+            });
+        });
+        $("#btnsaveinstrsx").click(function(){
+            Swal.fire({
+                title: "Anda yakin ingin menyimpan instruksi ini?",
+                showDenyButton: false,
+                showCancelButton: true,
+                confirmButtonText: "Simpan",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    instruksisx = $("#instruksisx").val();
+                    instruksisuffixsaved(instruksisx)
+                } else {            
+                }
+            });
+        });
+        $("#btndiscardkonversi").click(function(event){
+            localStorage.setItem("showModalAfterReload", "modalLarge3");
+            window.location.reload();
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+                const modalId = localStorage.getItem("showModalAfterReload");
+                if (modalId) {
+                    const modal = new bootstrap.Modal(document.getElementById(modalId));
+                    modal.show();
+                    localStorage.removeItem("showModalAfterReload");
+                }
+                var fileInput = document.getElementById("customFileBianco");
+                var button = document.getElementById("btnkonversidata");
+                var discard = document.getElementById("btndiscardkonversi");
+                if (fileInput) {
+                    fileInput.addEventListener('change', function() {
+                        if (this.files && this.files.length > 0) {
+                            var formData = new FormData();
+                            formData.append('file', this.files[0]);
+                            formData.append('csrfmiddlewaretoken', getCookie('csrftoken'));
+                            $('#fileup *').attr("disabled", true);
+                            button.addEventListener("click", function(event) {
+                                Swal.fire({
+                                    title: "Anda yakin ingin menggunakan dokumen ini dan melakukan konversi ke pelatihan AI?",
+                                    showDenyButton: false,
+                                    showCancelButton: true,
+                                    confirmButtonText: "Konversi",
+                                }).then((result) => {
+                                    Swal.fire({
+                                        title: "Loading...",
+                                        html: "Please wait a moment"
+                                    })
+                                    Swal.showLoading()
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('POST', '/chatbot/bianco/file/upload/', true);
+                                    xhr.onreadystatechange = function() {
+                                        if (xhr.readyState == 4) {
+                                            if (xhr.status == 200) {
+                                                var response = JSON.parse(xhr.responseText);
+                                                if (response.result == "success") {
+                                                    if (response.type == "pdf") {
+                                                        konversi_pdf_started(response.generatedpath, "modalLarge3")
+                                                    }
+                                                    if (response.type == "excel") {
+                                                        konversi_excel_started(response.generatedpath, "modalLarge3")
+                                                    }
+                                                } else {
+                                                    Swal.close()
+                                                    Swal.fire({
+                                                        toast: true,
+                                                        icon: 'error',
+                                                        title: `error found: ${response.message}`,
+                                                        animation: true,
+                                                        position: 'top-right',
+                                                        showConfirmButton: false,
+                                                        timer: 3000,
+                                                        timerProgressBar: true,
+                                                        color: 'white',
+                                                        background: '#7a68f9',
+                                                        didOpen: (toast) => {
+                                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                                        }
+                                                    }).then((result) => {
+                                                        console.log("Error:", response.message);
+                                                    });
+                                                }
+                                            } else {
+                                                Swal.close()
+                                                Swal.fire({
+                                                    toast: true,
+                                                    icon: 'error',
+                                                    title: `error found: ${xhr.status}`,
+                                                    animation: true,
+                                                    position: 'top-right',
+                                                    showConfirmButton: false,
+                                                    timer: 3000,
+                                                    timerProgressBar: true,
+                                                    color: 'white',
+                                                    background: '#7a68f9',
+                                                    didOpen: (toast) => {
+                                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                                    }
+                                                }).then((result) => {
+                                                    console.log("Error:", xhr.status);
+                                                });
+                                            }
+                                        }
+                                    };
+                                    xhr.send(formData);
+                                });
+                            });
+                        }
+                    });
+                }
+            // ---- end of deklarasi lainnya
+        })
+        async function submit_type_text_to_meta(tname, lang, body, numbervar, finalrecap) {
+            const data = {fname : tname, lang : lang, body : body, numbers : numbervar, final : finalrecap};
+            const url = "/chatbot/bianco/template/submit/text/"
+            Swal.fire({
+                title: "Loading...",
+                html: "Please wait a moment"
+            })
+            Swal.showLoading()
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      'X-CSRFToken': csrftoken
+                    },
+                    body: JSON.stringify(data),
+                });
+                const result = await response.json();
+                if (result.result == "success") { 
+                    Swal.hideLoading()
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        title: result.message,
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 5000,
+                        timerProgressBar: true,
+                        color: 'white',
+                        background: '#7a68f9',
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        localStorage.setItem("showModalAfterReload", "modalLarge7");
+                        window.location.reload();
+                    }); 
+                } else { 
+                    Swal.hideLoading()
+                    Swal.fire({
+                        toast: true,
+                        icon: 'error',
+                        title: result.message,
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        color: 'white',
+                        background: '#7a68f9',
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        console.log("Failed:", result.message); 
+                    });
+                }
+            } catch(error) {
+                Swal.hideLoading()
+                Swal.fire({
+                    toast: true,
+                    icon: 'error',
+                    title: `error found: ${error}`,
+                    animation: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    color: 'white',
+                    background: '#7a68f9',
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                }).then((result) => {
+                    console.log("Error:", error);
+                });
+            }
+        }
+        async function submit_type_media_to_meta(tname, lang, body, numbervar, mediaurl, finalrecap) {
+            const data = {fname : tname, lang : lang, body : body, numbers : numbervar, mediaurl : mediaurl, final : finalrecap};
+            const url = "/chatbot/bianco/template/submit/media/"
+            Swal.fire({
+                title: "Loading...",
+                html: "Please wait a moment"
+            })
+            Swal.showLoading()
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      'X-CSRFToken': csrftoken
+                    },
+                    body: JSON.stringify(data),
+                });
+                const result = await response.json();
+                if (result.result == "success") { 
+                    Swal.hideLoading()
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        title: result.message,
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 5000,
+                        timerProgressBar: true,
+                        color: 'white',
+                        background: '#7a68f9',
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        localStorage.setItem("showModalAfterReload", "modalLarge7");
+                        window.location.reload();
+                    }); 
+                } else { 
+                    Swal.hideLoading()
+                    Swal.fire({
+                        toast: true,
+                        icon: 'error',
+                        title: result.message,
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        color: 'white',
+                        background: '#7a68f9',
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        console.log("Failed:", result.message); 
+                    });
+                }
+            } catch(error) {
+                Swal.hideLoading()
+                Swal.fire({
+                    toast: true,
+                    icon: 'error',
+                    title: `error found: ${error}`,
+                    animation: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    color: 'white',
+                    background: '#7a68f9',
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                }).then((result) => {
+                    console.log("Error:", error);
+                });
+            }
+        }
+        async function konversi_pdf_started(path, modalId) {
+            const data = {path : path};
+            const url = "/chatbot/bianco/file/konversi/pdf/"
+            Swal.fire({
+                title: "Loading...",
+                html: "Please wait a moment"
+            })
+            Swal.showLoading()
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      'X-CSRFToken': csrftoken
+                    },
+                    body: JSON.stringify(data),
+                });
+                const result = await response.json();
+                if (result.result == "success") { 
+                    Swal.close()
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        title: result.message,
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        color: 'white',
+                        background: '#7a68f9',
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        localStorage.setItem("showModalAfterReload", modalId);
+                        window.location.reload();
+                    }); 
+                } else { 
+                    Swal.close()
+                    Swal.fire({
+                        toast: true,
+                        icon: 'error',
+                        title: result.message,
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        color: 'white',
+                        background: '#7a68f9',
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        console.log("Failed:", result.message); 
+                    });
+                }
+            } catch(error) {
+                Swal.close()
+                Swal.fire({
+                    toast: true,
+                    icon: 'error',
+                    title: `error found: ${error}`,
+                    animation: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    color: 'white',
+                    background: '#7a68f9',
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                }).then((result) => {
+                    console.log("Error:", error);
+                });
+            }
+        }
+        async function konversi_excel_started(path, modalId) {
+            const data = {path : path};
+            const url = "/chatbot/bianco/file/konversi/excel/"
+            Swal.fire({
+                title: "Loading...",
+                html: "Please wait a moment"
+            })
+            Swal.showLoading()
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      'X-CSRFToken': csrftoken
+                    },
+                    body: JSON.stringify(data),
+                });
+                const result = await response.json();
+                if (result.result == "success") { 
+                    Swal.close()
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        title: result.message,
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        color: 'white',
+                        background: '#7a68f9',
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        localStorage.setItem("showModalAfterReload", modalId);
+                        window.location.reload();
+                    }); 
+                } else { 
+                    Swal.close()
+                    Swal.fire({
+                        toast: true,
+                        icon: 'error',
+                        title: result.message,
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        color: 'white',
+                        background: '#7a68f9',
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        console.log("Failed:", result.message); 
+                    });
+                }
+            } catch(error) {
+                Swal.close()
+                Swal.fire({
+                    toast: true,
+                    icon: 'error',
+                    title: `error found: ${error}`,
+                    animation: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    color: 'white',
+                    background: '#7a68f9',
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                }).then((result) => {
+                    console.log("Error:", error);
+                });
+            }
+        }
+        async function konversi_format_upload_template(fullpath) {
+            const data = {fullpath : fullpath};
+            const url = "/chatbot/bianco/template/konversi/"
+            Swal.fire({
+                title: "Loading...",
+                html: "Please wait a moment"
+            })
+            Swal.showLoading()
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      'X-CSRFToken': csrftoken
+                    },
+                    body: JSON.stringify(data),
+                });
+                const result = await response.json();
+                if (result.result == "success") { 
+                    const manualFormatted = formatRecipientsManual(result.output);
+                    Swal.close()
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        title: result.message,
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        color: 'white',
+                        background: '#7a68f9',
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        $('#code-blok-template').text(manualFormatted);
+                    }); 
+                } else { 
+                    Swal.close()
+                    Swal.fire({
+                        toast: true,
+                        icon: 'error',
+                        title: result.message,
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        color: 'white',
+                        background: '#7a68f9',
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        console.log("Failed:", result.message); 
+                    });
+                }
+            } catch(error) {
+                Swal.close()
+                Swal.fire({
+                    toast: true,
+                    icon: 'error',
+                    title: `error found: ${error}`,
+                    animation: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    color: 'white',
+                    background: '#7a68f9',
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                }).then((result) => {
+                    console.log("Error:", error);
+                });
+            }
+        }
+        async function instruksicpsaved(instruksicp) {
+            const data = {profile : instruksicp};
+            const url = "/chatbot/bianco/data/prefix/saved/"
+            Swal.fire({
+                title: "Loading...",
+                html: "Please wait a moment"
+            })
+            Swal.showLoading()
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      'X-CSRFToken': csrftoken
+                    },
+                    body: JSON.stringify(data),
+                });
+                const result = await response.json();
+                if (result.result == "success") { 
+                    Swal.hideLoading()
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        title: result.message,
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        color: 'white',
+                        background: '#7a68f9',
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        localStorage.setItem("showModalAfterReload", "modalLarge2");
+                        window.location.reload();
+                    }); 
+                } else { 
+                    Swal.hideLoading()
+                    Swal.fire({
+                        toast: true,
+                        icon: 'error',
+                        title: result.message,
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        color: 'white',
+                        background: '#7a68f9',
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        console.log("Failed:", result.message); 
+                    });
+                }
+            } catch(error) {
+                Swal.hideLoading()
+                Swal.fire({
+                    toast: true,
+                    icon: 'error',
+                    title: `error found: ${error}`,
+                    animation: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    color: 'white',
+                    background: '#7a68f9',
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                }).then((result) => {
+                    console.log("Error:", error);
+                });
+            }
+        }
+        async function instruksisuffixsaved(instruksisx) {
+            const data = {suffix : instruksisx};
+            const url = "/chatbot/bianco/data/suffix/saved/"
+            Swal.fire({
+                title: "Loading...",
+                html: "Please wait a moment"
+            })
+            Swal.showLoading()
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      'X-CSRFToken': csrftoken
+                    },
+                    body: JSON.stringify(data),
+                });
+                const result = await response.json();
+                if (result.result == "success") { 
+                    Swal.hideLoading()
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        title: result.message,
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        color: 'white',
+                        background: '#7a68f9',
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        localStorage.setItem("showModalAfterReload", "modalLarge2");
+                        window.location.reload();
+                    }); 
+                } else { 
+                    Swal.hideLoading()
+                    Swal.fire({
+                        toast: true,
+                        icon: 'error',
+                        title: result.message,
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        color: 'white',
+                        background: '#7a68f9',
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        console.log("Failed:", result.message); 
+                    });
+                }
+            } catch(error) {
+                Swal.hideLoading()
+                Swal.fire({
+                    toast: true,
+                    icon: 'error',
+                    title: `error found: ${error}`,
+                    animation: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    color: 'white',
+                    background: '#7a68f9',
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                }).then((result) => {
+                    console.log("Error:", error);
+                });
+            }
+        }
+        async function kirim_template_blast(sid, recipients) {
+            const data = {sid : sid, recipients : recipients};
+            const url = "/chatbot/bianco/template/sent/blast/"
+            Swal.fire({
+                title: "Loading...",
+                html: "Please wait a moment"
+            })
+            Swal.showLoading()
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      'X-CSRFToken': csrftoken
+                    },
+                    body: JSON.stringify(data),
+                });
+                const result = await response.json();
+                if (result.result == "success") { 
+                    Swal.close()
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        title: result.message,
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        color: 'white',
+                        background: '#7a68f9',
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        window.location.reload();
+                    }); 
+                } else { 
+                    Swal.close()
+                    Swal.fire({
+                        toast: true,
+                        icon: 'error',
+                        title: result.message,
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        color: 'white',
+                        background: '#7a68f9',
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    }).then((result) => {
+                        console.log("Failed:", result.message); 
+                    });
+                }
+            } catch(error) {
+                Swal.close()
+                Swal.fire({
+                    toast: true,
+                    icon: 'error',
+                    title: `error found: ${error}`,
+                    animation: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    color: 'white',
+                    background: '#7a68f9',
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                }).then((result) => {
+                    console.log("Error:", error);
+                });
+            }
+        }
+    </script>
+    {% endverbatim  %}
+</body>
+</html>
