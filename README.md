@@ -28,7 +28,7 @@ The preview of Setup Page
 </p>
 
 <p align="center">
-<img width="1830" height="1019" alt="image" src="https://github.com/user-attachments/assets/a05693c9-08fb-4e98-b2b5-126b8d775cc4" />
+<img width="1844" height="1013" alt="image" src="https://github.com/user-attachments/assets/b7c27a4f-c14f-44ce-ac30-d08bff7cd233" />
 The preview of Template Page
 </p>
 
