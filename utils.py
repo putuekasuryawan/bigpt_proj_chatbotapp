@@ -3,7 +3,7 @@ import logging
 import requests
 from twilio.rest import Client
 from requests.auth import HTTPBasicAuth
-from chatbotappbianco.models import *
+from .models import *
 
 account_sid = tbl_twiliocredentials.objects.using("chatbotdb").filter(type="production").last().account_sid
 auth_token = tbl_twiliocredentials.objects.using("chatbotdb").filter(type="production").last().auth_token
