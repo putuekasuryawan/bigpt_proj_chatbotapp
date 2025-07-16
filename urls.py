@@ -2,12 +2,12 @@ from django.urls import path
 from . import views, cms
 
 urlpatterns = [
-    path("", cms.index, name="bianco_index"),
-    path("<str:id>/setup/", cms.biancosetup, name="bianco_setup"),
-    path("<str:id>/templates/", cms.biancotemplates, name="bianco_templates"),
+    path("", cms.index, name="bot_index"),
+    path("<str:id>/setup/", cms.whatsappbotsetup, name="bot_setup"),
+    path("<str:id>/templates/", cms.whatsappbottemplates, name="bot_templates"),
     path("data/prefix/saved/", cms.instruksicpsaved),
     path("data/suffix/saved/", cms.instruksisuffixsaved),
-    path("file/upload/", cms.fileuploadbianco, name="file_upload"),
+    path("file/upload/", cms.fileuploadchatbot, name="file_upload"),
     path("file/konversi/pdf/", cms.konversi_started_pdf),
     path("file/konversi/excel/", cms.konversi_started_excel),
     path("template/konversi/", cms.templatekonversi),
