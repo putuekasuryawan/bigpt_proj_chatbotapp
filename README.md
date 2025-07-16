@@ -32,6 +32,7 @@ The preview of Setup Page
 The preview of Templates Page
 </p>
 
+<p align="center">
 <img width="1850" height="1016" alt="image" src="https://github.com/user-attachments/assets/494b835a-9589-4837-bd40-27e81cac4422" />
 The preview of Send Chat Template Feature Page
 </p>
