@@ -2,6 +2,9 @@
 
 An AI-driven WhatsApp chatbot built with **Django**, integrated with **Twilio** and **OpenAI GPT**, designed to serve as a virtual hotel receptionist for Hotel-related business. This bot handles customer greetings, hotel-related inquiries, and requests in a smart, polite, and contextual manner.
 
+<img width="1936" height="1061" alt="image" src="https://github.com/user-attachments/assets/00efefa3-a9f5-421a-b175-6682be727a8a" />
+
+
 ---
 
 ## 🚀 Features
