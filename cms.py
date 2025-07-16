@@ -476,14 +476,14 @@ def contenttypetextapi(request):
             res = "The submission process failed with a status code: " + str(response.status_code) + " (" + str(response.text) + ")"
     except Exception as e:
         state = "failed"
-        res = "Proses submit gagal, error : " + str(e)
+        res = "The submission process failed, error : " + str(e)
     return JsonResponse({"result": state, "message" : res})
 
 @csrf_exempt
 def contenttypemediaapi(request):
     TWILIO_ACCOUNT_SID = tbl_twiliocredentials.objects.using("chatbotdb").filter(type="production").last().account_sid
     TWILIO_AUTH_TOKEN = tbl_twiliocredentials.objects.using("chatbotdb").filter(type="production").last().auth_token
-    TWILIO_API_URL = "https://content.twilio.com/v1/Content"
+    TWILIO_API_URL = "https://content.twilio.com/xxxxxxxxxxxxxxxx/Content"
     state = ""
     res = ""
     data = json.loads(request.body) 
@@ -538,20 +538,20 @@ def contenttypemediaapi(request):
             else:
                 state = "failed"
                 print(str(response1.text))
-                res = "Proses submit ke Meta gagal dijalankan tapi data berhasil masuk ke Twilio Console, error code: " + str(response1.status_code) + " (" + str(response1.text) + ")"
+                res = "The submission to Meta failed, but the data was successfully received in the Twilio Console, error code: " + str(response1.status_code) + " (" + str(response1.text) + ")"
         else:
             state = "failed"
-            res = "Proses submit gagal dengan status code: " + str(response.status_code) + " (" + str(response.text) + ")"
+            res = "The submission process failed with a status code: " + str(response.status_code) + " (" + str(response.text) + ")"
     except Exception as e:
         state = "failed"
-        res = "Proses submit gagal, error : " + str(e)
+        res = "The submission process failed, error : " + str(e)
     return JsonResponse({"result": state, "message" : res})
 
 @csrf_exempt
 def get_template_status(request):
     TWILIO_ACCOUNT_SID = tbl_twiliocredentials.objects.using("chatbotdb").filter(type="production").last().account_sid
     TWILIO_AUTH_TOKEN = tbl_twiliocredentials.objects.using("chatbotdb").filter(type="production").last().auth_token
-    TWILIO_API_URL = "https://content.twilio.com/v1/Content"
+    TWILIO_API_URL = "https://content.twilio.com/xxxxxxxxxxxx/Content"
     result_data = []
     if request.method == "GET" and request.headers.get('x-requested-with') == 'XMLHttpRequest':
         templates = tbl_chattemplate.objects.using("chatbotdb").all()
@@ -583,7 +583,7 @@ def get_template_status(request):
 def delete_template(request, sid):
     TWILIO_ACCOUNT_SID = tbl_twiliocredentials.objects.using("chatbotdb").filter(type="production").last().account_sid
     TWILIO_AUTH_TOKEN = tbl_twiliocredentials.objects.using("chatbotdb").filter(type="production").last().auth_token
-    TWILIO_API_URL = "https://content.twilio.com/v1/Content"
+    TWILIO_API_URL = "https://content.twilio.com/xxxxxxxxxxxxx/Content"
     if request.method == "POST":
         final_url = f"{TWILIO_API_URL}/{sid}"
         headers = {
@@ -607,7 +607,7 @@ def delete_template(request, sid):
 def get_content_template(request, sid):
     TWILIO_ACCOUNT_SID = tbl_twiliocredentials.objects.using("chatbotdb").filter(type="production").last().account_sid
     TWILIO_AUTH_TOKEN = tbl_twiliocredentials.objects.using("chatbotdb").filter(type="production").last().auth_token
-    TWILIO_API_URL = "https://content.twilio.com/v1/Content"
+    TWILIO_API_URL = "https://content.twilio.com/xxxxxxxxxxxx/Content"
     result_data = []
     if request.method == "GET" and request.headers.get('x-requested-with') == 'XMLHttpRequest':
         url_fetch = f"{TWILIO_API_URL}/{sid}"
@@ -644,7 +644,7 @@ def get_content_template(request, sid):
 def get_template_approved(request):
     TWILIO_ACCOUNT_SID = tbl_twiliocredentials.objects.using("chatbotdb").filter(type="production").last().account_sid
     TWILIO_AUTH_TOKEN = tbl_twiliocredentials.objects.using("chatbotdb").filter(type="production").last().auth_token
-    TWILIO_API_URL = "https://content.twilio.com/v1/Content"
+    TWILIO_API_URL = "https://content.twilio.com/xxxxxxxxxxxx/Content"
     result_data = []
     if request.method == "GET" and request.headers.get('x-requested-with') == 'XMLHttpRequest':
         templates = tbl_chattemplate.objects.using("chatbotdb").order_by('-created')
@@ -677,7 +677,7 @@ def get_template_approved(request):
 def get_template_approved_detail(request, content_sid):
     TWILIO_ACCOUNT_SID = tbl_twiliocredentials.objects.using("chatbotdb").filter(type="production").last().account_sid
     TWILIO_AUTH_TOKEN = tbl_twiliocredentials.objects.using("chatbotdb").filter(type="production").last().auth_token
-    TWILIO_API_URL = "https://content.twilio.com/v1/Content"
+    TWILIO_API_URL = "https://content.twilio.com/xxxxxxxxxxxxxxx/Content"
     template = tbl_chattemplate.objects.using("chatbotdb").filter(content_sid=content_sid)
     if not template:
         return JsonResponse({"error": "Not found"}, status=404)
@@ -729,7 +729,7 @@ def templatekonversi(request):
     df = pd.read_excel(BytesIO(response.content))
     if 'phone_number' not in df.columns:
         state = "failed"
-        res = "Kolom 'phone_number' wajib ada."
+        res = "The 'phone_number' field is required."
     else:
         recipients = []
         var_cols = [col for col in df.columns if col != 'phone_number']
@@ -742,7 +742,7 @@ def templatekonversi(request):
             recipients.append(entry)
         print(recipients)
         state = "success"
-        res = "Proses konversi berjalan lancar"
+        res = "The conversion process was successfully executed."
     return JsonResponse({"result": state, "message" : res, "output" : recipients})
 
 @csrf_exempt
@@ -755,9 +755,9 @@ def sendblasttemplate(request):
     try:
         send_bulk_template_message(sid, recipients)
         state = "success"
-        res = "Blast whatsapp template berhasil dikirimkan"
+        res = "WhatsApp template blast was successfully sent."
     except Exception as e:
         state = "failed"
-        res = "Blast whatsapp template gagal dikirimkan. error: " + str(e)
+        res = "WhatsApp template blast failed to send. error: " + str(e)
         
     return JsonResponse({"result": state, "message" : res}) 
