@@ -15,12 +15,13 @@ includes a **CMS pages** to manage AI-related data in real time. Key features:
 - 🧠 Customize how the bot understands and responds
 - 🤖 Create, manage, and send blast WhatsApp Message Templates
 
+The CMS empowers non-developers (e.g., admins, marketing) to modify chatbot behavior **without editing the code**.
+
 <p align="center">
 <img width="1841" height="1017" alt="image" src="https://github.com/user-attachments/assets/a56da261-9d65-4606-8752-aa7d1c047ab6" />
+The preview of Home Page
 </p>
 
-
-The CMS empowers non-developers (e.g., admins, marketing) to modify chatbot behavior **without editing the code**.
 
 ---
 
