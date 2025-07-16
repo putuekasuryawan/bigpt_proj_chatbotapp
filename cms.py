@@ -5,8 +5,7 @@ from .utils import send_bulk_template_message
 from django.contrib.auth import logout
 from django.shortcuts import redirect, render
 from django.utils.timezone import make_aware
-from bigptchatapp.models import *
-from chatbotappbianco.models import *
+from .models import *
 from django.http import JsonResponse
 from openpyxl import load_workbook
 from django.conf import settings
@@ -76,7 +75,7 @@ def index(request):
         default_endpoint = tbl_application.objects.filter(id=get_default_app).last().endpoint
         return redirect(default_endpoint)
 
-def biancosetup(request, id):
+def whatsappbotsetup(request, id):
     get_role = tbl_application_user_role.objects.filter(user_id=request.user).last().role_id
     granted_menu = tbl_application_roles_setup_menu.objects.filter(role_id=get_role).filter(app_id=int(id)).filter(status=1).order_by('-menu_queue').values_list('menu_id', flat=True)
     app = tbl_application.objects.filter(id=int(id))
@@ -115,9 +114,9 @@ def biancosetup(request, id):
                                 </li>
                             '''
                 usermenu.insert(0, menu_html)
-        prefix = tbl_twilioprefix.objects.using("chatbotdb").filter(owner = "bianco")
-        suffix = tbl_twiliosuffix.objects.using("chatbotdb").filter(owner = "bianco")
-        context = tbl_twiliocontext.objects.using("chatbotdb").filter(owner = "bianco")
+        prefix = tbl_twilioprefix.objects.using("chatbotdb").filter(owner = "hotel")
+        suffix = tbl_twiliosuffix.objects.using("chatbotdb").filter(owner = "hotel")
+        context = tbl_twiliocontext.objects.using("chatbotdb").filter(owner = "hotel")
         showprefix = ""
         showsuffix = ""
         showcontext = ""
@@ -135,11 +134,11 @@ def biancosetup(request, id):
                    "showprefix": showprefix,
                    "showsuffix": showsuffix,
                    "showkonversi": showcontext}
-        return render(request, str(app.last().app_name) + "/biancosetup.html", context)
+        return render(request, str(app.last().app_name) + "/whatsappbotsetup.html", context)
     else:
         return redirect(app_endpoint)
 
-def biancotemplates(request, id):
+def whatsappbottemplates(request, id):
     get_role = tbl_application_user_role.objects.filter(user_id=request.user).last().role_id
     granted_menu = tbl_application_roles_setup_menu.objects.filter(role_id=get_role).filter(app_id=int(id)).filter(status=1).order_by('-menu_queue').values_list('menu_id', flat=True)
     app = tbl_application.objects.filter(id=int(id))
@@ -178,9 +177,9 @@ def biancotemplates(request, id):
                                 </li>
                             '''
                 usermenu.insert(0, menu_html)
-        prefix = tbl_twilioprefix.objects.using("chatbotdb").filter(owner = "bianco")
-        suffix = tbl_twiliosuffix.objects.using("chatbotdb").filter(owner = "bianco")
-        context = tbl_twiliocontext.objects.using("chatbotdb").filter(owner = "bianco")
+        prefix = tbl_twilioprefix.objects.using("chatbotdb").filter(owner = "hotel")
+        suffix = tbl_twiliosuffix.objects.using("chatbotdb").filter(owner = "hotel")
+        context = tbl_twiliocontext.objects.using("chatbotdb").filter(owner = "hotel")
         showprefix = ""
         showsuffix = ""
         showcontext = ""
@@ -198,7 +197,7 @@ def biancotemplates(request, id):
                    "showprefix": showprefix,
                    "showsuffix": showsuffix,
                    "showkonversi": showcontext}
-        return render(request, str(app.last().app_name) + "/biancotemplate.html", context)
+        return render(request, str(app.last().app_name) + "/whatsappbottemplate.html", context)
     else:
         return redirect(app_endpoint)
 
@@ -208,14 +207,14 @@ def instruksicpsaved(request):
     state = ""
     res = ""
     try:
-        prefix = tbl_twilioprefix.objects.using("chatbotdb").filter(owner="bianco")
+        prefix = tbl_twilioprefix.objects.using("chatbotdb").filter(owner="hotel")
         if prefix.count() > 0:
             prefix.update(prefix = data["profile"])
             state = "success"
             res = "Save data profile to database completed"
         else:
             prefix.create( 
-                owner = "bianco",
+                owner = "hotel",
                 prefix = data["profile"]
             )
             state = "success"
@@ -231,14 +230,14 @@ def instruksisuffixsaved(request):
     state = ""
     res = ""
     try:
-        suffix = tbl_twiliosuffix.objects.using("chatbotdb").filter(owner="bianco")
+        suffix = tbl_twiliosuffix.objects.using("chatbotdb").filter(owner="hotel")
         if suffix.count() > 0:
             suffix.update(suffix = data["suffix"])
             state = "success"
             res = "Save data suffix to database completed"
         else:
             suffix.create( 
-                owner = "bianco",
+                owner = "hotel",
                 suffix = data["suffix"]
             )
             state = "success"
@@ -263,7 +262,7 @@ def detect_file_type(ext):
         return 'unknown'
 
 @csrf_exempt
-def fileuploadbianco(request):
+def fileuploadchatbot(request):
     folder_name = ""
     size = 6
     res = "".join(random.choices(string.ascii_uppercase + string.digits, k=size))
@@ -277,16 +276,16 @@ def fileuploadbianco(request):
     file_type = detect_file_type(file_ext)
     if file_type == "unknown":
         state = "failed"
-        res = "gagal upload file ke MinIO storage, file extension not supported"
+        res = "The file failed to upload to MinIO due to an unsupported file extension."
     else:
         bucket_name = settings.AWS_STORAGE_BUCKET_NAME
         if file_type == "pdf":
-            folder_name = f"bianco/{file_type}/"
+            folder_name = f"hotel/{file_type}/"
         elif file_type == "excel":
-            folder_name = f"bianco/{file_type}/"
+            folder_name = f"hotel/{file_type}/"
         elif file_type == "images":
-            folder_name = f"bianco/{file_type}/"
-        file_path = f"{folder_name}BIANCO-{res}-{file_name}"
+            folder_name = f"hotel/{file_type}/"
+        file_path = f"{folder_name}HOTEL-{res}-{file_name}"
         minio_url = f"{settings.AWS_S3_ENDPOINT_URL}/{bucket_name}/{file_path}"
         print("file_type:", file_type)
         print("folder_name:", folder_name)
@@ -295,7 +294,7 @@ def fileuploadbianco(request):
         try:
             default_storage.save(file_path, request_file)
             state = "success"
-            res = "upload file ke MinIO storage berhasil"
+            res = "The file was successfully uploaded to MinIO."
         except Exception as e:
             print("Exception:", e)
             state = "failed"
@@ -344,14 +343,14 @@ def extract_text_from_excel(file_bytes):
 
 def ask_gpt_to_convert_to_json(raw_text: str) -> str:
     prompt = (
-        "Tolong konversikan teks berikut menjadi JSON yang valid, dengan format yang sesuai:\n\n"
+        "Please convert the following text into valid JSON with the appropriate format:\n\n"
         f"{raw_text}\n\n"
-        "Berikan hanya JSON (Expecting property name enclosed in double quotes) sebagai output tanpa penjelasan, tanpa kode markdown apapun."
+        "Provide only the JSON output (Expecting property name enclosed in double quotes) without any explanation or markdown code."
     )
     response = openai.chat.completions.create(
         model="gpt-4.1-2025-04-14",
         messages=[
-            {"role": "system", "content": "Kamu adalah asisten yang ahli dalam parsing teks menjadi JSON."},
+            {"role": "system", "content": "You are an assistant specialized in parsing text into JSON."},
             {"role": "user", "content": prompt},
         ],
         max_tokens=32000,
@@ -374,12 +373,12 @@ def konversi_started_pdf(request):
         raw_teks = extract_text_from_pdf(file_bytes)
         json_result = ask_gpt_to_convert_to_json(raw_teks)
         parsed_json = json.loads(json_result)
-        tbl_twiliocontext.objects.using("chatbotdb").create(owner = "bianco", context = json_result)
+        tbl_twiliocontext.objects.using("chatbotdb").create(owner = "hotel", context = json_result)
         state = "success"
-        res = "proses konversi berhasil dijalankan"
+        res = "The conversion process was successfully executed."
     except Exception as e:
         state = "failed"
-        res = "gagal dalam proses konversi, error : " + str(e)
+        res = "The conversion process failed, error : " + str(e)
     return JsonResponse({"result": state, "message": res})
 
 @csrf_exempt
@@ -395,12 +394,12 @@ def konversi_started_excel(request):
         raw_teks = extract_text_from_excel(file_bytes)
         json_result = ask_gpt_to_convert_to_json(raw_teks)
         parsed_json = json.loads(json_result)
-        tbl_twiliocontext.objects.using("chatbotdb").create(owner = "bianco", context = json_result)
+        tbl_twiliocontext.objects.using("chatbotdb").create(owner = "hotel", context = json_result)
         state = "success"
-        res = "proses konversi berhasil dijalankan"
+        res = "The conversion process was successfully executed."
     except Exception as e:
         state = "failed"
-        res = "gagal dalam proses konversi, error : " + str(e)
+        res = "The conversion process failed, error : " + str(e)
     return JsonResponse({"result": state, "message": res})
 
 def format_date(date_str):
@@ -418,7 +417,7 @@ def format_date(date_str):
 def contenttypetextapi(request):
     TWILIO_ACCOUNT_SID = tbl_twiliocredentials.objects.using("chatbotdb").filter(type="production").last().account_sid
     TWILIO_AUTH_TOKEN = tbl_twiliocredentials.objects.using("chatbotdb").filter(type="production").last().auth_token
-    TWILIO_API_URL = "https://content.twilio.com/v1/Content"
+    TWILIO_API_URL = "https://content.twilio.com/xxxxxxxxxxxx/Content"
     state = ""
     res = ""
     data = json.loads(request.body) 
@@ -464,17 +463,17 @@ def contenttypetextapi(request):
                 if objs.count() > 0:
                     objs.update(submit_status = dataku.get("status"))
                     state = "success"
-                    res = "Proses submit ke Meta berhasil dijalankan"
+                    res = "The submission process to Meta was successfully executed."
                 else:
                     state = "success"
-                    res = "Proses submit ke Meta berhasil tapi gagal dalam update data ke database"
+                    res = "The submission to Meta was successful, but updating the data in the database failed."
             else:
                 state = "failed"
                 print(str(response1.text))
-                res = "Proses submit ke Meta gagal dijalankan tapi data berhasil masuk ke Twilio Console, error code: " + str(response1.status_code) + " (" + str(response1.text) + ")"
+                res = "The submission to Meta failed, but the data was successfully received in the Twilio Console, error code: " + str(response1.status_code) + " (" + str(response1.text) + ")"
         else:
             state = "failed"
-            res = "Proses submit gagal dengan status code: " + str(response.status_code) + " (" + str(response.text) + ")"
+            res = "The submission process failed with a status code: " + str(response.status_code) + " (" + str(response.text) + ")"
     except Exception as e:
         state = "failed"
         res = "Proses submit gagal, error : " + str(e)
@@ -532,10 +531,10 @@ def contenttypemediaapi(request):
                 if objs.count() > 0:
                     objs.update(submit_status = dataku.get("status"))
                     state = "success"
-                    res = "Proses submit ke Meta berhasil dijalankan"
+                    res = "The submission process to Meta was successfully executed."
                 else:
                     state = "success"
-                    res = "Proses submit ke Meta berhasil tapi gagal dalam update data ke database"
+                    res = "The submission to Meta was successful, but updating the data in the database failed."
             else:
                 state = "failed"
                 print(str(response1.text))
