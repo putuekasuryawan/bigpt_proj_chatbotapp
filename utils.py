@@ -46,10 +46,8 @@ def send_bulk_template_message(content_sid, recipients):
             'From': f'whatsapp:{twilio_number}',
             'ContentSid': content_sid,
         }
-
         if content_variables:
-            data['ContentVariables'] = str(content_variables).replace("'", '"')
-            
+            data['ContentVariables'] = str(content_variables).replace("'", '"')            
         print(data)
         try:
             response = requests.post(
@@ -64,7 +62,5 @@ def send_bulk_template_message(content_sid, recipients):
             logger.error(f"❌ Failed to send to {to_number}: {str(e)}")
             logger.error(f"Response: {e.response.text}")
             results.append({"to": to_number, "status": "failed", "error": str(e)})
-
         time.sleep(delay)
-
     return results
