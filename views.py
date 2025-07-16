@@ -4,9 +4,9 @@ from django.http import HttpResponse
 from django.db import transaction
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
-from chatbotappbianco.models import *
-from bigptchatapp.logics import *
-from .utils import send_message, logger
+from .models import *
+from .logics import *
+from .utils import *
 
 openai.api_key = os.environ.get("OPENAI_KEY")
 
@@ -14,14 +14,14 @@ class WhatsappChatbot(APIView):
     permission_classes = [AllowAny]
     def post(self, request):
         whatsapp_number = request.POST.get('From').split("whatsapp:")[-1]
-        print(f"Sending the ChatGPT response to this number: {whatsapp_number}")
         obj1 = tbl_twilioconversation.objects.using("chatbotdb").filter(sender = whatsapp_number).order_by('-id')
-        stringtheorm = tbl_twiliocontext.objects.using("chatbotdb").filter(owner = "bianco")
-        companyprofile = tbl_twilioprefix.objects.using("chatbotdb").filter(owner = "bianco")
-        datasuffix = tbl_twiliosuffix.objects.using("chatbotdb").filter(owner = "bianco")
+        stringtheorm = tbl_twiliocontext.objects.using("chatbotdb").filter(owner = "hotel")
+        companyprofile = tbl_twilioprefix.objects.using("chatbotdb").filter(owner = "hotel")
+        datasuffix = tbl_twiliosuffix.objects.using("chatbotdb").filter(owner = "hotel")
+        system = "You are an AI assistant acting as a hotel receptionist."
         body = request.POST.get('Body', '')
-        messages=[{"role":"system", "content": "Anda adalah AI assistant yang bertindak layaknya seorang receptionist hotel dari Bianco Costel."}]
-        messages.append({"role": "user", "content": "Request terbaru user adalah : " + body + '. Periksa apakah request terbaru ini berhubungan dengan produk perhotelan Bianco Costel, atau merupakan kalimat salam dan permohonan (seperti contoh: Halo, Apa kabar, terima kasih, sampai jumpa, selamat pagi, mohon maaf, maaf dan sejenisnya), atau tidak ada hubungan sama sekali. Jika iya berhubungan kembalikan nilai 1, jika tidak sama sekali kembalikan nilai 0, jika kalimat salam kembalikan nilai 2. do not explain.'})
+        messages=[{"role":"system", "content": system}]
+        messages.append({"role": "user", "content": "User's latest request is: " + body + '. Check whether the latest request is related to hotel products, a greeting or polite expression (such as: Hello, How are you, Thank you, Goodbye, Good morning, Sorry, Excuse me, etc.), or completely unrelated. If it is hotel-related, return 1. If it is a greeting or polite phrase, return 2. If it is completely unrelated, return 0. Do not explain.'})
         response = openai.chat.completions.create(
                 model="gpt-4.1-2025-04-14",
                 messages=messages,
@@ -33,15 +33,15 @@ class WhatsappChatbot(APIView):
         chatgpt_response = response.choices[0].message.content if response.choices else "No choices found." 
         print(chatgpt_response)
         if chatgpt_response == "1":
-            messages1=[{"role":"system", "content": "Anda adalah AI assistant yang bertindak layaknya seorang receptionist hotel dari Bianco Costel."}]       
+            messages1=[{"role":"system", "content": system}]       
             if companyprofile.count() > 0:
-                messages1.append({"role": "user", "content": "Pahami data company profile berikut: " + str(companyprofile.last().prefix)})
+                messages1.append({"role": "user", "content": "Understand the following company profile data: " + str(companyprofile.last().prefix)})
                 messages1.append({"role": "assistant", "content": "Acknowledge."})
             if stringtheorm.count() > 0:
-                messages1.append({"role": "user", "content": "Pahami data json berikut: " + str(stringtheorm.last().context)})
+                messages1.append({"role": "user", "content": "Understand the following JSON data: " + str(stringtheorm.last().context)})
                 messages1.append({"role": "assistant", "content": "Acknowledge."})
             else:
-                messages1.append({"role": "user", "content": "Tolong gunakan segala pengetahuanmu tentang perhotelan di Indonesia."})
+                messages1.append({"role": "user", "content": "Please use all your knowledge about the hospitality industry."})
                 messages1.append({"role": "assistant", "content": "Acknowledge."})
             if obj1.count() > 0:
                 a = 0
@@ -55,9 +55,9 @@ class WhatsappChatbot(APIView):
                     if a == 5:
                         break 
             if datasuffix.count() > 0:
-                messages1.append({"role": "user", "content": "Request terbaru user adalah : " + body + '. Cari jawaban menggunakan jawaban sebelumnya jika terkait atau gunakan data data dalam json. Jika terdapat rumus tuliskan tanpa Latex. Berikan respon tanpa reasoning kecuali diminta oleh user. Jangan beri emoji. ' + str(datasuffix.last().suffix)})
+                messages1.append({"role": "user", "content": f"User's latest request is: {body}. Search for the answer using previous responses if relevant, or use the data in the JSON. If there is a formula, write it without LaTeX. Respond without reasoning unless requested by the user. Do not include emojis. " + str(datasuffix.last().suffix)})
             else:
-                messages1.append({"role": "user", "content": "Request terbaru user adalah : " + body + '. Cari jawaban menggunakan jawaban sebelumnya jika terkait atau gunakan data data dalam json. Jika terdapat rumus tuliskan tanpa Latex. Berikan respon tanpa reasoning kecuali diminta oleh user. Jangan beri emoji.'})
+                messages1.append({"role": "user", "content": f"User's latest request is: {body}. Search for the answer using previous responses if relevant, or use the data in the JSON. If there is a formula, write it without LaTeX. Respond without reasoning unless requested by the user. Do not include emojis."})
             response1 = openai.chat.completions.create(
                     model="gpt-4.1-2025-04-14",
                     messages=messages1,
@@ -68,7 +68,7 @@ class WhatsappChatbot(APIView):
                 )
             chatgpt_response1 = response1.choices[0].message.content if response1.choices else "No choices found." 
             messages1.append({"role": "assistant", "content": chatgpt_response1})
-            messages1.append({"role": "user", "content": f"Hitung response: {chatgpt_response1} jika melebihi 1600 karakter ulangi response yang sama agar maksimal 1500 karakter, jika tidak melebihi maka kembalikan response tersebut saja. Jangan beri emoji. Jangan sebutkan kembali instruksi."})
+            messages1.append({"role": "user", "content": f"Calculate the response: {chatgpt_response1}, if the response exceeds 1600 characters, repeat the same response so that each segment is a maximum of 1500 characters. If it does not exceed the limit, return the response as is. Do not include emojis. Do not repeat the instructions."})
             response2 = openai.chat.completions.create(
                     model="gpt-4.1-2025-04-14",
                     messages=messages1,
