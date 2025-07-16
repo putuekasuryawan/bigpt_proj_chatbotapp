@@ -1,4 +1,4 @@
-{% extends "master-templates-bianco/base.html" %}
+{% extends "master-templates/base.html" %}
 {% load static %}
 
 {% block content %}
@@ -11,21 +11,21 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="card card-bordered">
-                                        <img src="{% static 'images/card-home-chatbot3-bianco.jpg' %}" class="card-img-top" title="Designed by Freepik">
+                                        <img src="{% static 'images/card-home-chatbot3.jpg' %}" class="card-img-top" title="Designed by Freepik">
                                         <div class="card-inner">
-                                            <h5 class="card-title">Upload & Konversi Sumber Data</h5>
-                                            <p class="card-text">Lakukan sinkronisasi sumber data dengan cara konversi dan simpan ke dalam format yang dipahami AI, agar chatbot dapat menjawab secara akurat menggunakan data terkini.</p>
-                                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#modalLarge3">Upload & Konversi Sumber Data</a>
+                                            <h5 class="card-title">Upload & Convert Data Source</h5>
+                                            <p class="card-text">Synchronize the data source by converting and saving it into a format that the AI can understand, so the chatbot can respond accurately using the latest data.</p>
+                                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#modalLarge3">Upload & Convert Data Source</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="card card-bordered">
-                                        <img src="{% static 'images/card-home-chatbot2-bianco.jpg' %}" class="card-img-top" title="Designed by Freepik">
+                                        <img src="{% static 'images/card-home-chatbot2.jpg' %}" class="card-img-top" title="Designed by Freepik">
                                         <div class="card-inner">
-                                            <h5 class="card-title">Manajemen Instruksi AI</h5>
-                                            <p class="card-text">Tambahkan atau ubah arahan terhadap AI secara custom, yang akan membantu AI chatbot memahami dan menjawab secara optimal segala permintaan dan pertanyaan user.</p>
-                                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#modalLarge2">Kelola Instruksi</a>
+                                            <h5 class="card-title">AI Instruction Management</h5>
+                                            <p class="card-text">Add or modify custom instructions for the AI to help the chatbot better understand and respond optimally to all user requests and questions.</p>
+                                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#modalLarge2">Manage Instruction</a>
                                         </div>
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Manajemen Instruksi</h5>
+                        <h5 class="modal-title">Instruction Management</h5>
                         <a href="#" id="modalclosegut" class="close" data-dismiss="modal" aria-label="Close">
                             <em class="icon ni ni-cross"></em>
                         </a>
@@ -47,7 +47,7 @@
                     <div class="modal-body">
                         <div class="row gy-4">
                             <div class="col-sm-6">
-                                <a href="#" class="btn btn-wider btn-info" id="btnnewinstrcp"><span>Tambah/Ubah Company Profile</span><em class="icon ni ni-plus-circle"></em></a>
+                                <a href="#" class="btn btn-wider btn-info" id="btnnewinstrcp"><span>Add/Edit Company Profile</span><em class="icon ni ni-plus-circle"></em></a>
                             </div>
                             <div class="col-sm-6">
                                 <span class="preview-title overline-title" style="visibility:hidden">Save or Edit</span>
@@ -59,7 +59,7 @@
                         <div class="preview-block" id="instruksifrm">
                             <div class="form-group">                           
                                 <div class="form-control-wrap">
-                                    <textarea class="form-control no-resize" placeholder="Silakan input informasi company profile bisnis anda sebagai instruksi AI disini..." id="instruksicp">{{showprefix}}</textarea>
+                                    <textarea class="form-control no-resize" placeholder="Please enter your business company profile information as AI instruction here..." id="instruksicp">{{showprefix}}</textarea>
                                 </div>
                             </div>
                             <div class="row gy-4">
@@ -74,12 +74,12 @@
                                 <div class="col-sm-6">
                                     <div class="row gy-4">
                                         <div class="col-sm-6">
-                                            <span class="preview-title overline-title">simpan data?</span>
-                                            <button type="button" class="btn btn-primary btn-block" id="btnsaveinstrcp"><span>Simpan</span><em class="icon ni ni-save"></em></a>
+                                            <span class="preview-title overline-title">save data?</span>
+                                            <button type="button" class="btn btn-primary btn-block" id="btnsaveinstrcp"><span>Save</span><em class="icon ni ni-save"></em></a>
                                         </div>
                                         <div class="col-sm-6">
-                                            <span class="preview-title overline-title" style="visibility:hidden">batalkan data?</span>
-                                            <button type="button" class="btn btn-danger btn-block" id="btndiscardinstrcp"><span>Batalkan</span><em class="icon ni ni-cross-c"></em></a>
+                                            <span class="preview-title overline-title" style="visibility:hidden">cancel?</span>
+                                            <button type="button" class="btn btn-danger btn-block" id="btndiscardinstrcp"><span>Cancel</span><em class="icon ni ni-cross-c"></em></a>
                                         </div>
                                     </div>
                                 </div>
@@ -89,7 +89,7 @@
                         <br />
                         <div class="row gy-4">
                             <div class="col-sm-6">
-                                <a href="#" class="btn btn-wider btn-info" id="btnnewinstrsx"><span>Tambah/Ubah Instruksi Suffix</span><em class="icon ni ni-plus-circle"></em></a>
+                                <a href="#" class="btn btn-wider btn-info" id="btnnewinstrsx"><span>Add/Edit Instruction Suffix</span><em class="icon ni ni-plus-circle"></em></a>
                             </div>
                             <div class="col-sm-6">
                                 <span class="preview-title overline-title" style="visibility:hidden">Save or Edit</span>
@@ -101,7 +101,7 @@
                         <div class="preview-block" id="instruksisxfrm">
                             <div class="form-group">                           
                                 <div class="form-control-wrap">
-                                    <textarea class="form-control no-resize" placeholder="Silakan input kalimat suffix sebagai tambahan instruksi AI disini..." id="instruksisx">{{showsuffix}}</textarea>
+                                    <textarea class="form-control no-resize" placeholder="Please enter a suffix sentence as additional AI instruction here..." id="instruksisx">{{showsuffix}}</textarea>
                                 </div>
                             </div>
                             <div class="row gy-4">
@@ -116,12 +116,12 @@
                                 <div class="col-sm-6">
                                     <div class="row gy-4">
                                         <div class="col-sm-6">
-                                            <span class="preview-title overline-title">simpan data?</span>
-                                            <button type="button" class="btn btn-primary btn-block" id="btnsaveinstrsx"><span>Simpan</span><em class="icon ni ni-save"></em></a>
+                                            <span class="preview-title overline-title">save data?</span>
+                                            <button type="button" class="btn btn-primary btn-block" id="btnsaveinstrsx"><span>Save</span><em class="icon ni ni-save"></em></a>
                                         </div>
                                         <div class="col-sm-6">
-                                            <span class="preview-title overline-title" style="visibility:hidden">batalkan data?</span>
-                                            <button type="button" class="btn btn-danger btn-block" id="btndiscardinstrsx"><span>Batalkan</span><em class="icon ni ni-cross-c"></em></a>
+                                            <span class="preview-title overline-title" style="visibility:hidden">cancel?</span>
+                                            <button type="button" class="btn btn-danger btn-block" id="btndiscardinstrsx"><span>Cancel</span><em class="icon ni ni-cross-c"></em></a>
                                         </div>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@
                         </div>
                     </div>
                     <div class="modal-footer bg-light">
-                        <span class="sub-text">Bianco Costel Chatbot Management By Banda AI</span>
+                        <span class="sub-text">Chatbot Management By Banda AI</span>
                     </div>
                 </div>
             </div>
@@ -138,7 +138,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Manajemen Sumber Data</h5>
+                        <h5 class="modal-title">Datasource management</h5>
                         <a href="#" id="modalclosegut2" class="close" data-dismiss="modal" aria-label="Close">
                             <em class="icon ni ni-cross"></em>
                         </a>
@@ -152,7 +152,7 @@
                                 <div class="col-sm-6">
                                     <div class="row gy-4">
                                         <div class="form-group" id="fileup">
-                                            <span class="preview-title overline-title">Pilih dokumen</span>
+                                            <span class="preview-title overline-title">Choose document</span>
                                             <div class="form-control-wrap">
                                                 <div class="custom-file">
                                                     <input type="file" multiple class="custom-file-input" id="customFileBianco">
@@ -164,12 +164,12 @@
                                     <div class="row gy-4">
                                         <div class="row gy-4">
                                             <div class="col-sm-6">
-                                                <span class="preview-title overline-title">konversi?</span>
-                                                <button type="button" class="btn btn-primary btn-block" id="btnkonversidata"><span>Konversi</span><em class="icon ni ni-db"></em></a>
+                                                <span class="preview-title overline-title">convert?</span>
+                                                <button type="button" class="btn btn-primary btn-block" id="btnkonversidata"><span>Convert</span><em class="icon ni ni-db"></em></a>
                                             </div>
                                             <div class="col-sm-6">
-                                                <span class="preview-title overline-title" style="visibility:hidden">batalkan?</span>
-                                                <button type="button" class="btn btn-danger btn-block clear-button" id="btndiscardkonversi"><span>Batalkan</span><em class="icon ni ni-cross-c"></em></a>
+                                                <span class="preview-title overline-title" style="visibility:hidden">cancel?</span>
+                                                <button type="button" class="btn btn-danger btn-block clear-button" id="btndiscardkonversi"><span>Cancel</span><em class="icon ni ni-cross-c"></em></a>
                                             </div>
                                         </div>
                                     </div>
@@ -179,7 +179,7 @@
                             <br />
                             <div class="preview-block">
                                 <div class="code-block">
-                                    <h6 class="overline-title title">Output hasil konversi</h6>
+                                    <h6 class="overline-title title">Conversion Output</h6>
                                     <button class="btn btn-sm clipboard-init" title="Copy to clipboard" data-clipboard-target="#formElements" data-clip-success="Copied" data-clip-text="Copy"><span class="clipboard-text">Copy</span></button>
                                     <pre class="prettyprint lang-html" id="formElements">
                                         {{showkonversi}}
@@ -189,7 +189,7 @@
                         </div>
                     </div>
                     <div class="modal-footer bg-light">
-                        <span class="sub-text">Bianco Costel Chatbot Management By Banda AI</span>
+                        <span class="sub-text">Chatbot Management By Banda AI</span>
                     </div>
                 </div>
             </div>
