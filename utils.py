@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def send_message(to_number, body_text):
-    url = f'https://api.twilio.com/2010-04-01/Accounts/{account_sid}/Messages.json'
+    url = f'https://api.twilio.com/xxxxxxxx/{account_sid}/Messages.json'
     try:
         data = {
             'To': f'whatsapp:{to_number}',
@@ -34,7 +34,7 @@ def send_message(to_number, body_text):
 
 def send_bulk_template_message(content_sid, recipients):
     delay = 1
-    url = f'https://api.twilio.com/2010-04-01/Accounts/{account_sid}/Messages.json'
+    url = f'https://api.twilio.com/xxxxxxx/{account_sid}/Messages.json'
     results = []
     for recipient in recipients:
         to_number = recipient.get("number")
