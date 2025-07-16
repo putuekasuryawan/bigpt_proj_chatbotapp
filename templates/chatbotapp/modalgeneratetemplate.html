@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Generate Template Chat</h5>
-                <a href="#" id="modalclosetemplatewizard" class="close" data-dismiss="modal" aria-label="Close" title="batalkan proses dan kembali">
+                <a href="#" id="modalclosetemplatewizard" class="close" data-dismiss="modal" aria-label="Close" title="cancel the process and go back">
                     <em class="icon ni ni-cross"></em>
                 </a>
             </div>
@@ -16,7 +16,7 @@
                                     <div class="nk-block-head-content">
                                         <h4 class="title nk-block-title">Wizard Form - Template Chat</h4>
                                         <div class="nk-block-des">
-                                            <p>Ikuti setiap langkah berikut untuk pembuatan template chat.</p>
+                                            <p>Follow each step below to create your chat template.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -31,10 +31,10 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <label class="form-label" for="fw-first-name">Template Name  </label><em class="icon ni ni-alert-circle" id="icon-container">
-                                                                <span class="tooltips">Nama template hanya boleh mengandung karakter alfanumerik kecil dan garis bawah. Spasi atau karakter lain tidak diperbolehkan.</span></em>
+                                                                <span class="tooltips">Template names may only contain lowercase alphanumeric characters and underscores. Spaces or other characters are not allowed.</span></em>
                                                             <div class="form-control-wrap">
                                                                 <input type="text" data-msg="Required" class="form-control required" id="fw-template-name" name="fw-template-name" oninput="validateInput()" required>
-                                                                <small id="error-message" style="color: red; display: none;">Nama template tidak valid. Hanya karakter alfanumerik kecil dan garis bawah yang diperbolehkan.</small>
+                                                                <small id="error-message" style="color: red; display: none;">Invalid template name. Only lowercase alphanumeric characters and underscores are allowed.</small>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -76,7 +76,7 @@
                                                     <div class="row gy-3">
                                                         <div class="col">
                                                             <div style="padding-bottom: 2px;">
-                                                                <label><strong>Content Type Text</strong> memungkinkan chat template menggunakan konten text saja tanpa gambar atau video, tentu kelebihannya adalah pesan yang ringkas, ringan, dan hemat.</label>
+                                                                <label><strong>Content Type Text</strong> Chat templates can use text-only content without images or videos, offering the advantage of being simple, lightweight, and efficient.</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -85,7 +85,7 @@
                                                             <label class="form-label" for="body-textarea-text">Body</label>
                                                         </div>
                                                         <div class="col">
-                                                            <p id="hitungbodytext" style="width: 100%;"><i>karakter limit 0/1600</i></p>
+                                                            <p id="hitungbodytext" style="width: 100%;"><i>Character limit: 0/1600</i></p>
                                                         </div>
                                                     </div>
                                                     <div class="row gy-3">
@@ -102,7 +102,7 @@
                                                             <p id="variable-count-body-text" style="visibility:hidden"></p>
                                                         </div>
                                                         <div class="col-sm-5">
-                                                            <a href="#" class="btn btn-outline-light" id="add-variable-body-text"><em class="icon ni ni-plus-sm"></em><span> Tambah variable ke body</span></a><em class="icon ni ni-help" id="icon-container2"><span class="tooltips2">Variable adalah sebuah konten dinamis yang bisa ditambahkan ke dalam body chat template</span></em>
+                                                            <a href="#" class="btn btn-outline-light" id="add-variable-body-text"><em class="icon ni ni-plus-sm"></em><span> Add variable to body</span></a><em class="icon ni ni-help" id="icon-container2"><span class="tooltips2">A variable is dynamic content that can be added to the body of a chat template</span></em>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -110,7 +110,7 @@
                                                     <div class="row gy-3">
                                                         <div class="col">
                                                             <div style="padding-bottom: 5px;">
-                                                                <label><strong>Content Type Media</strong> memungkinkan chat template memadukan konten type text dan multimedia seperti gambar, video, dan audio. Tentu kelebihannya adalah pesan menjadi lebih kaya dan lebih menarik perhatian.</label>
+                                                                <label><strong>Content Type Media</strong> Chat templates can combine text content with multimedia elements such as images, videos, and audio. This makes the message richer and more attention-grabbing.</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -119,7 +119,7 @@
                                                             <label class="form-label" for="body-textarea-media">Body</label>
                                                         </div>
                                                         <div class="col">
-                                                            <p id="hitungbodymedia" style="width: 100%;"><i>karakter limit 0/1600</i></p>
+                                                            <p id="hitungbodymedia" style="width: 100%;"><i>Character limit: 0/1600</i></p>
                                                         </div>
                                                     </div>
                                                     <div class="row gy-3">
@@ -136,16 +136,16 @@
                                                             <p id="variable-count-body-media" style="visibility:hidden"></p>
                                                         </div>
                                                         <div class="col-sm-5">
-                                                            <a href="#" class="btn btn-outline-light" id="add-variable-body-media"><em class="icon ni ni-plus-sm"></em><span> Tambah variable ke body</span></a><em class="icon ni ni-help" id="icon-container2"><span class="tooltips2">Variable adalah sebuah konten dinamis yang bisa ditambahkan ke dalam body chat template</span></em>
+                                                            <a href="#" class="btn btn-outline-light" id="add-variable-body-media"><em class="icon ni ni-plus-sm"></em><span> Add variable to body</span></a><em class="icon ni ni-help" id="icon-container2"><span class="tooltips2">A variable is dynamic content that can be added to the body of a chat template</span></em>
                                                         </div>
                                                     </div>
                                                     <div class="row gy-3">
                                                         <div class="col-sm-8">
                                                             <label class="form-label" for="fw-first-name">Media URL  </label><em class="icon ni ni-alert-circle" id="icon-container">
-                                                                <span class="tooltips">Whatsapp membatasi konten pesan media, yaitu maximum size limit adalah 16 MB</span></em>
+                                                                <span class="tooltips">WhatsApp limits media message content to a maximum size of 16 MB</span></em>
                                                         </div>
                                                         <div class="col">
-                                                            <p id="hitungbodymediaupload" style="width: 100%;"><i>karakter limit 0/1600</i></p>
+                                                            <p id="hitungbodymediaupload" style="width: 100%;"><i>Character limit: 0/1600</i></p>
                                                         </div>
                                                     </div>
                                                     <div class="row gy-3">
