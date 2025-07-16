@@ -92,8 +92,8 @@ class WhatsappChatbot(APIView):
                 return HttpResponse(status=500)
             send_message(whatsapp_number, chatgpt_response2)
         elif chatgpt_response == "0":
-            messages2=[{"role":"system", "content": "Anda adalah AI assistant yang bertindak layaknya seorang receptionist hotel dari Bianco Costel."}]
-            messages2.append({"role": "user", "content": "Request terbaru user adalah : " + body + '. Request ini sepertinya tidak ada hubungan dengan produk perhotelan Bianco Costel. Silakan membalas dengan bahasa yang sopan dan singkat bahwa request tersebut diluar topik dan minta user melakukan request ulang sesuai topik saja. Jangan beri emoji. do not explain.'})
+            messages2=[{"role":"system", "content": system}]
+            messages2.append({"role": "user", "content": f"User's latest request is: {body}. This request doesn't appear to be related to hospitality products. Ask user kindly to resubmit a request that is relevant to the topic. Do not include emojis. Do not explain."})
             response3 = openai.chat.completions.create(
                     model="gpt-4.1-2025-04-14",
                     messages=messages2,
@@ -105,8 +105,8 @@ class WhatsappChatbot(APIView):
             chatgpt_response3 = response3.choices[0].message.content if response3.choices else "No choices found." 
             send_message(whatsapp_number, chatgpt_response3)
         elif chatgpt_response == "2":
-            messages3=[{"role":"system", "content": "Anda adalah AI assistant yang bertindak layaknya seorang receptionist hotel dari Bianco Costel."}]
-            messages3.append({"role": "user", "content": "Request terbaru user adalah : " + body + '. Request ini sepertinya adalah kalimat salam atau kalimat permohonan. Silakan membalas dengan bahasa yang sopan dan singkat sesuai salam atau permohonan yang diberikan. Jangan beri emoji. do not explain.'})
+            messages3=[{"role":"system", "content": system}]
+            messages3.append({"role": "user", "content": f"User's latest request is: {body}. This request appears to be a greeting or a polite request. Please respond courteously and concisely, based on the greeting or request provided. Do not include emojis. Do not explain."})
             response4 = openai.chat.completions.create(
                     model="gpt-4.1-2025-04-14",
                     messages=messages3,
