@@ -27,6 +27,11 @@ The preview of Home Page
 The preview of Setup Page
 </p>
 
+<p align="center">
+<img width="1830" height="1019" alt="image" src="https://github.com/user-attachments/assets/a05693c9-08fb-4e98-b2b5-126b8d775cc4" />
+The preview of Template Page
+</p>
+
 ---
 
 ## 🧰 Tech Stack
